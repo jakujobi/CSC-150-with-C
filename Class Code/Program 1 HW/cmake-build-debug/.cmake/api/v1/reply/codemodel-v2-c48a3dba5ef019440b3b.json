@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Program_1_HW",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Program_1_HW::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Program_1_HW-Debug-696a76438cdd715f896a.json",
+					"name" : "Program_1_HW",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/SBL-Loaner/OneDrive - South Dakota State University - SDSU/#SDSU Courses/CSC 150/Class Code/Program 1 HW/cmake-build-debug",
+		"source" : "C:/Users/SBL-Loaner/OneDrive - South Dakota State University - SDSU/#SDSU Courses/CSC 150/Class Code/Program 1 HW"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
