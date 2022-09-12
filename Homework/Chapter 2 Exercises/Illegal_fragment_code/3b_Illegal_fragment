@@ -1,0 +1,31 @@
+//This code shows that constants shouldn't be treated like variables and can't be updated or redefined during the program's execution.
+//Created by: John Akujobi on 9/11/2022
+//CSC 150 - S01
+
+#include <stdio.h> 
+#define PI 3.14159 
+
+//int main (void) were not on the same line
+int main(void) 
+{ 
+ double c, r; 
+
+    printf("Type the circumference of the circle: \n");
+    scanf("%lf", &c);
+
+//We didnt send the user a prompt to type in the input for variables c and r
+    printf("Type the radius of the circle: \n");
+    scanf("%lf", &r);
+
+
+/*
+PI is a constant, yet it is being treated as a variable
+In the line below, we are trying to assign a value to the constant PI after it has already being defined
+*/
+     PI = c / (2 * r); 
+
+//The dots were not ascii characters
+ ...
+
+ return (0);
+}
