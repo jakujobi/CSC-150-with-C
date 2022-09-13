@@ -18,6 +18,7 @@ int main (void)
     float average_hose_fill_rate, tank_height, tank_diameter, tank_radius;
     float tank_volume_ft, tank_volume_gallons, tank_fill_time;
     int  tank_fill_time_hrs, tank_fill_time_minutes_left, tank_fill_time_mins;
+    char end;
 
 //ask the user for the height and diameter of the tank
     printf("What is the height of your tank in feet? \n");
@@ -58,13 +59,17 @@ tank_fill_time_minutes_left are the number of minutes left after the hours are c
     tank_fill_time_minutes_left = (tank_fill_time_mins)%60; 
 
 //print the volume of the users tank in both cubic feet and gallons
-    printf("The volume of your tank is %f cubic feet \n", tank_volume_ft);
-    printf("It can hold %f gallons of water \n", tank_volume_gallons);
+    printf("\n");
+    printf("The volume of your tank is %.3f cubic feet \n", tank_volume_ft);
+    printf("It can hold %.3f gallons of water \n", tank_volume_gallons);
     printf("\n");
 
 //print the time it takes to fill the tank by returning the variable tank_fill_time_hrs to the user
-    printf("It would take %f minutes to fill the tank. \n", tank_fill_time);
+    printf("It would take %.3f minutes to fill the tank. \n", tank_fill_time);
     printf("That's about %d hour(s), and %d minutes. \n", tank_fill_time_hrs, tank_fill_time_minutes_left);
     printf("\n");
+    printf("Thank you for using this program. \n");
+    scanf("%c", &end);
+    
     return (0);
 }
