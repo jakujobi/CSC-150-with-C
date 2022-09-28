@@ -1,3 +1,0 @@
-C:/Users/SBL-Loaner/OneDrive - South Dakota State University - SDSU/#SDSU Courses/CSC 150/Class Code/cmake-build-debug/CMakeFiles/Class_Code.dir
-C:/Users/SBL-Loaner/OneDrive - South Dakota State University - SDSU/#SDSU Courses/CSC 150/Class Code/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/SBL-Loaner/OneDrive - South Dakota State University - SDSU/#SDSU Courses/CSC 150/Class Code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
