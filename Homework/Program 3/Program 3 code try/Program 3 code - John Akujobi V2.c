@@ -1,5 +1,5 @@
-//This program helps the user calculate how much of their favorite beverage hey can hold in 
-//their ‚ÄúSpecial Reserve‚Äù Hobo Day mug in the shape of a hemi-sphere can hold
+//This program helps the user calculate how much of their favorite beverage hey can hold in
+//their ìSpecial Reserveî Hobo Day mug in the shape of a hemi-sphere can hold
 
 /*The program uses functions to:
 1. Print a welcome message to the screen
@@ -65,6 +65,7 @@ int main(void)
     //declare variables
     float diameter, vol_Inches, vol_Ounces, vol_Lit, radius;
 
+
     // print welcome message
     printWelcome();
 
@@ -90,7 +91,7 @@ int main(void)
 
     // print results to the user
     printResults(diameter, radius, vol_Inches, vol_Ounces, vol_Lit);
-    
+
     return 0;
 }
 
