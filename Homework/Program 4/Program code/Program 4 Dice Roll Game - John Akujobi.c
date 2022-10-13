@@ -236,6 +236,7 @@ char CheckWinner (int compRoll, int userRoll)
 }
 
 
+/*
 //This function determines the winner of the game based on the value of winner
 //Then it prints the winner
 void PrintWinner (char winner)
@@ -264,4 +265,35 @@ void PrintWinner (char winner)
         printf ("\nError\nThe winner is not determined\n\n");
     }
 
+}
+
+*/
+
+
+//This function determines the winner of the game based on the value of winner
+//Then it prints the winner
+void PrintWinner (char winner)
+{
+    //checks if the winner of the game is the user
+    switch (winner)
+    {
+        case 'U':
+            printf ("Woohoo!!!\nYou win!\n\n");
+            break;
+
+        //checks if the winner of the game is the computer
+        case 'C':
+            printf ("\nWhoops\nThe computer wins!\n\n");
+            break;
+
+        //checks if the game is a tie
+        case 'T':
+            printf ("\nBadoom\nIt's a tie!\n\n");
+            break;
+
+        //prints an error message if the winner is not determined
+        default:
+            printf ("\nError\nThe winner is not determined\n\n");
+    }
+    printf ("Thank you for playing!\nSee ya!\n"); 
 }
