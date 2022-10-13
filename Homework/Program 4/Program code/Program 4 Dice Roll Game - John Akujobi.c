@@ -2,10 +2,10 @@
 This program is a dice roll game
 The user will roll a dice and the computer will roll a dice
 The following rules determine the winner
-Closest to 12 wins
-Lucky 7 (sum of 7) beats closest to 12
-Snake eyes beat Lucky 7.
-First Snake Eyes, then Lucky 7, then closest to 12
+    Snake eyes beat Lucky 7.
+    Lucky 7 (sum of 7) beats closest to 12
+    Closest to 12 wins
+
 
 Created by John Akujobi
 On 10th October 2022
@@ -16,7 +16,7 @@ CSC 150 S01
 
 //BUG#1: All the dice rolls are the same
 //Fixed BUG#1: by using the PressEnter function to reset the time seed for the random number generator in the dice roll function
-            //This makes sure that the random number generator is not using the same seed everytime the program is run
+        //This makes sure that the random number generator is not using the same seed from the cpu clock everytime the program is run
 
 
 #include <stdio.h>
