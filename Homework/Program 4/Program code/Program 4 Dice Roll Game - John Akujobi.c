@@ -96,7 +96,7 @@ int main ()
     PressEnter ();
 
     userR2 = DiceRoll ();
-    printf ("Your second roll is %d\n", userR1);
+    printf ("Your second roll is %d\n", userR2);
 
     //Calling the UserX function
     userRoll = UserX (userR1, userR2);
