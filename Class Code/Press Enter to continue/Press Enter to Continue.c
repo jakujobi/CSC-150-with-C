@@ -6,30 +6,21 @@ void pause ( void );
 
 int main(void)
 {
- /*
- //Does not work!!
-  while (1)
-  {
-    printf("La di da, I'm doing an iteration...\n");
-    printf("Press Enter to continue\n");
-    while (getchar()!='\n');
 
-    printf ("Hiya");
-  }
-    */
-
-//This Inline version works
-printf("Press enter to continue\n");
-char enter = 0;
-while (enter != '\r' && enter != '\n')
-{
-    enter = getchar(); 
-}
-printf("Thank you for pressing enter\n");
+  /*
+    //This 1st version works
+    //Inline version
+    printf("Press enter to continue\n");
+    char enter = 0;
+    while (enter != '\r' && enter != '\n')
+    {
+        enter = getchar(); 
+    }
+    printf("Thank you for pressing enter\n");
+  */
 
 
-
-//    pause();
+   pause();
     return 0; /* not actually needed, since execution never gets here */
 }
 
@@ -55,4 +46,15 @@ void pause ( void )
 }
 */
 
-//Works!!!!!!
+
+
+/*
+
+//This 4th version of the pause function works
+void pause ( void )
+{
+printf ("Press enter to continue...\n");
+getchar();
+}
+
+*/
