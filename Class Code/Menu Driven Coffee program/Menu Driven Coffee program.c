@@ -21,8 +21,7 @@ drink_t getChoice();
 int main ()
 {
     //Declaring variables
-    int choice, coffeeType, coffeePrice;
-    char coffeeSizeName[10], coffeeTypeName[10];
+    int choice;
 
     //get the menu choice
     choice = getChoice();
