@@ -21,14 +21,14 @@ int main(void)
     //Checks if the number is in the range 0 to 15
     do
     {
-        if (num < 0 || num > 15 || num != num)
+        if (num < 0 || num > 15 || num/1 == 0)
         {
             printf("Whoops! Invalid input.\n Please enter a number between 0 and 15: ");
             scanf("%d", &num);
         }
 
         printf("The number you entered is %d\n", num);
-        
+
     } while (num < 0 || num > 15);
 
     return (0);
