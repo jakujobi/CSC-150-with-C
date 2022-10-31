@@ -14,22 +14,28 @@ int main(void)
     //Declare my variable
     int num;
 
-    //Asks the user to enter a number
-    printf("Enter a number between 0 and 15: ");
-    scanf("%d", &num);
-
     //Checks if the number is in the range 0 to 15
     do
     {
-        if (num < 0 || num > 15 || num/1 == 0)
+        int num = 0; //initializes num to 0
+
+        //Asks the user to enter a number for the first time
+        printf("Enter a number between 0 and 15: ");
+        scanf("%d", &num);
+
+        //Checks if the number is in the range 0 to 15
+        if (num*1 < 0 || num*1 > 15)
         {
-            printf("Whoops! Invalid input.\n Please enter a number between 0 and 15: ");
+            //Print error message
+            //And ask the user to enter a number again
+            printf("Whoops! Invalid input.\n");
+            printf("Please Enter a number between 0 and 15: ");
             scanf("%d", &num);
         }
 
-        printf("The number you entered is %d\n", num);
+        //printf("The number you entered is %d\n", num);
 
-    } while (num < 0 || num > 15);
+    } while (num*1 < 0 || num*1 > 15);
 
     return (0);
 }
