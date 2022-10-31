@@ -111,16 +111,17 @@ drink_t getChoice ()
         //This is to zero base the choice
         choice = choice - 1;
 
+        if (choice < Hot_Chocolate || choice > Exit)
+        {
+            printf ("UH OH!\nInvalid choice!\n\n");
+            //exit (1);
+        }
+
     } while (choice < Hot_Chocolate || choice > Exit);
 
 
 
     ///*
-    if (choice < Hot_Chocolate || choice > Exit)
-    {
-        printf ("UH OH!\n Invalid choice!\n");
-        //exit (1);
-    }
     //*/
 
     //Returning the choice
