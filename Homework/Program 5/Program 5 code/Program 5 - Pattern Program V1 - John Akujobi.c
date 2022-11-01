@@ -102,7 +102,7 @@ int main ()
         //Calling the Pick_Pattern function
         Pick_Pattern(choice);
 
-        printf("Nice work! You've completed a pattern!\n\n");
+        printf("Nice work! You've completed a pattern!\n\n\n");
 
     } while (choice != Exit); //checks if the user wants to exit the program
 
@@ -119,8 +119,10 @@ void Welcome ()
     printf("It will ask you for the size of the pattern and the pattern you want to print.\n");
     printf("You can choose from 4 patterns and you can exit the program at any time.\n");
     printf("\n");
+
+    //Showing an example of the patterns
     printf("Here is an example of patterns of size 7\n");
-    printf ("Pattern 1          Pattern 2	        Pattern 3	        Pattern 4   \n ");
+    printf (" Pattern 1          Pattern 2	            Pattern 3	            Pattern 4   \n ");
     printf ("* 7 7 7 7 7 7      * * * * * * *	    7 7 7 7 7 7 7	    * * * * * * 7 \n ");
     printf ("7 * 7 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * * 7 * \n ");
     printf ("7 7 * 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * 7 * * \n ");
@@ -129,12 +131,12 @@ void Welcome ()
     printf ("7 7 7 7 7 * 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * 7 * * * * * \n ");
     printf ("7 7 7 7 7 7 *	    * * * * * * *	    7 7 7 7 7 7 7	    7 * * * * * * \n ");
     printf("\n\n"); //To give space after the welcome statement
-//  printf("Have fun!\n");
-//  printf("\n");
 
+    /*
     printf("Press Enter to continue-->");
     while (getchar()!='\n'); //To pause the program until the user presses enter
     printf("\n\n");
+    */
 
     return;
 }
@@ -149,6 +151,7 @@ void Main_Menu ()
     printf("3. Pattern 3\n");
     printf("4. Pattern 4\n");
     printf("5. Exit\n");
+    printf("\n");
 
     return;
 }
@@ -159,14 +162,12 @@ void Main_Menu ()
 //It uses the choice variable to determine which pattern will be executed
 void Pick_Pattern (option choice)
 {
+    //Calling the Get_Choice function
+    Get_Choice(choice);
 
     //Calling the Get_Size function and storing the value in the variable size
     int size = Get_Size(size);
-
-    //Calling the Get_Choice function
-    Get_Choice(choice);
     
-
     //Switch statement to determine which pattern to print
     switch (choice)
     {
@@ -248,21 +249,24 @@ option Get_Choice (option choice)
 void Draw_Pattern_1 (int size)
 {
     //Declaring variables
-    int i;
-    int j;
+    int row, col;
 
-    //Printing the pattern
-    for (i = 1; i <= size; i++)
+    //Pattern 1
+    for (row = 0; row < size; row++)
     {
-        for (j = 1; j <= i; j++)
+        for (col = 0; col < size; col++)
         {
-            printf("*");
+            if (row == col)
+            {
+                printf("  *");
+            }
+            else
+            {
+                printf("%3d", size);
+            }
         }
         printf("\n");
     }
-
-    //Printing a blank line to give space between outputs
-    printf("\n\n");
 
     return;
 }
@@ -272,21 +276,23 @@ void Draw_Pattern_1 (int size)
 void Draw_Pattern_2 (int size)
 {
     //Declaring variables
-    int i;
-    int j;
+    int row, col;
 
-    //Printing the pattern
-    for (i = 1; i <= size; i++)
+    //Pattern 2
+    for (row = 1; row <= size; row++)
     {
-        for (j = 1; j <= size; j++)
+        for (col = 1; col <= size; col++)
         {
-            printf("*");
+            if (row == 1 || row == size || col == 1 || col == size)
+            {
+                printf("  *");
+            }
+            else
+            {
+                printf("%3d", size);
+            }
         }
         printf("\n");
-    }
-
-    //Printing a blank line to give space between outputs
-    printf("\n\n");
 
     return;
 }
@@ -296,28 +302,24 @@ void Draw_Pattern_2 (int size)
 void Draw_Pattern_3 (int size)
 {
     //Declaring variables
-    int i;
-    int j;
+    int row, col;
 
-    //Printing the pattern
-    for (i = 1; i <= size; i++)
+    //Pattern 3
+    for (row = 1; row <= size; row++)
     {
-        for (j = 1; j <= size; j++)
+        for (col = 1; col <= size; col++)
         {
-            if (i == 1 || i == size || j == 1 || j == size)
+            if (row == 1 || row == size || col == 1 || col == size)
             {
-                printf("*");
+                printf("%3d", size);
             }
             else
             {
-                printf(" ");
+                printf("  *");
             }
         }
         printf("\n");
     }
-
-    //Printing a blank line to give space between outputs
-    printf("\n\n");
 
     return;
 }
