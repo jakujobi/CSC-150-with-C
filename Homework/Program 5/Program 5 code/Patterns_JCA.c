@@ -114,6 +114,7 @@ typedef enum //The method i learned from StackOverflow in which the options are 
 void Welcome ();    //Prints a welcome statement to the user
 void Main_Menu ();  //Prints the main menu
 void Pick_Pattern (option choice);  //Picks a pattern based on the user's choice gotten in Get_Choice. Will use switch statement
+
 int Get_Size (int size);    //This function gets the size of the pattern
 option Get_Choice (option choice);  //This function gets the choice of the pattern
 
@@ -271,7 +272,8 @@ option Get_Choice (option choice)
     printf("Please enter your choice---->:");
     scanf("%d", &choice);
 
-    //choice = choice - 1; //Not needed anymore   
+    //choice = choice - 1;
+    //Not needed anymore   
 
     //Validating the input
     while (choice < 1 || choice > 5)
