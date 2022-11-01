@@ -94,12 +94,14 @@ int main ()
     Welcome();
 
     //Calling the Main_Menu function
-    Main_Menu();
+    //Main_Menu();
 
     do
     {
         //Calling the Pick_Pattern function
         Pick_Pattern(choice);
+
+        printf("Nice work! You've completed a pattern!\n\n")
 
     } while (choice != Exit);
 
@@ -121,11 +123,11 @@ void Welcome ()
 void Main_Menu ()
 {
     printf("Please select a pattern to print:\n");
-    printf("1. Pattern 1");
-    printf("2. Pattern 2");
-    printf("3. Pattern 3");
-    printf("4. Pattern 4");
-    printf("5. Exit");
+    printf("1. Pattern 1\n");
+    printf("2. Pattern 2\n");
+    printf("3. Pattern 3\n");
+    printf("4. Pattern 4\n");
+    printf("5. Exit\n");
 
     return;
 }
@@ -133,33 +135,33 @@ void Main_Menu ()
 
 //This function calls the Get_Size function and the Get_Choice function
 //It uses the choice variable to determine which pattern will be executed
-void Pick_Pattern ()
+void Pick_Pattern (option choice)
 {
 
     //Calling the Get_Size function
     int size = Get_Size(size);
 
     //Calling the Get_Choice function
-    int choice = Get_Choice(choice);
+    Get_Choice(choice);
     
 
     //Switch statement to determine which pattern to print
     switch (choice)
     {
         case Pattern_1:
-            Pattern_1(size);
+            Draw_Pattern_1(size);
             break;
 
         case Pattern_2:
-            Pattern_2(size);
+            Draw_Pattern_2(size);
             break;
 
         case Pattern_3:
-            Pattern_3(size);
+            Draw_Pattern_3(size);
             break;
 
         case Pattern_4:
-            Pattern_4(size);
+            Draw_Pattern_4(size);
             break;
 
         case Exit:
@@ -236,6 +238,9 @@ void Draw_Pattern_1 (int size)
         printf("\n");
     }
 
+    //Printing a blank line to give space between outputs
+    printf("\n\n");
+
     return;
 }
 
@@ -256,6 +261,9 @@ void Draw_Pattern_2 (int size)
         }
         printf("\n");
     }
+
+    //Printing a blank line to give space between outputs
+    printf("\n\n");
 
     return;
 }
@@ -285,6 +293,9 @@ void Draw_Pattern_3 (int size)
         printf("\n");
     }
 
+    //Printing a blank line to give space between outputs
+    printf("\n\n");
+
     return;
 }
 
@@ -312,6 +323,9 @@ void Draw_Pattern_4 (int size)
         }
         printf("\n");
     }
+
+    //Printing a blank line to give space between outputs
+    printf("\n\n");
 
     return;
 }
