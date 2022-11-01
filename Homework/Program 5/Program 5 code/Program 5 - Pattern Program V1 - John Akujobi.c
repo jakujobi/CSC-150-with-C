@@ -60,10 +60,14 @@ This program prints a pattern of asterisks based on the user's input.
     - It doesn’t return any value
 
 Created by John Akujobi
-On the 30th of October 2022
+
+On the 29th of October 2022
+Finished on the 1st of November 2022
+
 CSC 150 S01
 
 */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -101,8 +105,8 @@ int main ()
     {
         //Calling the Pick_Pattern function
         Pick_Pattern(choice);
-
-        printf("Nice work! You've completed a pattern!\n\n\n");
+        printf("\n");
+        printf("Nice work!\nYou've completed a pattern!\n\n\n");
 
     } while (choice != Exit); //checks if the user wants to exit the program
 
@@ -116,21 +120,20 @@ void Welcome ()
     printf("\n\n"); //To give space before the welcome statement
     printf("Welcome to the Pattern Program!\n");
     printf("This program prints a pattern of asterisks and a number based on the user's input.\n");
-    printf("It will ask you for the size of the pattern and the pattern you want to print.\n");
-    printf("You can choose from 4 patterns and you can exit the program at any time.\n");
+    printf("It will ask you for the size and one of 4 patterns you want to print.\n");
     printf("\n");
 
     //Showing an example of the patterns
     printf("Here is an example of patterns of size 7\n");
-    printf (" Pattern 1          Pattern 2	            Pattern 3	            Pattern 4   \n ");
-    printf ("* 7 7 7 7 7 7      * * * * * * *	    7 7 7 7 7 7 7	    * * * * * * 7 \n ");
-    printf ("7 * 7 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * * 7 * \n ");
-    printf ("7 7 * 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * 7 * * \n ");
-    printf ("7 7 7 * 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * 7 * * * \n ");
-    printf ("7 7 7 7 * 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * 7 * * * * \n ");
-    printf ("7 7 7 7 7 * 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * 7 * * * * * \n ");
-    printf ("7 7 7 7 7 7 *	    * * * * * * *	    7 7 7 7 7 7 7	    7 * * * * * * \n ");
-    printf("\n\n"); //To give space after the welcome statement
+    printf (" Pattern 1          Pattern 2	            Pattern 3	            Pattern 4   \n");
+    printf ("* 7 7 7 7 7 7      * * * * * * *       7 7 7 7 7 7 7	    * * * * * * 7 \n");
+    printf ("7 * 7 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * * 7 * \n");
+    printf ("7 7 * 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * 7 * * \n");
+    printf ("7 7 7 * 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * 7 * * * \n");
+    printf ("7 7 7 7 * 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * 7 * * * * \n");
+    printf ("7 7 7 7 7 * 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * 7 * * * * * \n");
+    printf ("7 7 7 7 7 7 *	    * * * * * * *	    7 7 7 7 7 7 7	    7 * * * * * * \n");
+    printf("\n"); //To give space after the welcome statement
 
     /*
     printf("Press Enter to continue-->");
@@ -155,7 +158,6 @@ void Main_Menu ()
 
     return;
 }
-
 
 
 //This function calls the Get_Size function and the Get_Choice function
@@ -293,7 +295,7 @@ void Draw_Pattern_2 (int size)
             }
         }
         printf("\n");
-
+    }
     return;
 }
 
@@ -329,21 +331,21 @@ void Draw_Pattern_3 (int size)
 void Draw_Pattern_4 (int size)
 {
     //Declaring variables
-    int i;
-    int j;
+    int row, col;
 
-    //Printing the pattern
-    for (i = 1; i <= size; i++)
+    //Pattern 4
+    for (row = 1; row <= size; row++)
     {
-        for (j = 1; j <= size; j++)
+        for (col = 1; col <= size; col++)
         {
-            if (i == 1 || i == size || j == 1 || j == size || i == j || i + j == size + 1)
+            //checks for where to print the number size
+            if ( row == (size-col+1))
             {
-                printf("*");
+                printf("%3d", size);
             }
             else
             {
-                printf(" ");
+                printf("  *");
             }
         }
         printf("\n");
