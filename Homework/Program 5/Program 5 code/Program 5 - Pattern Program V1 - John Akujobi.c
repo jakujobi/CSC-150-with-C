@@ -120,7 +120,7 @@ void Welcome ()
     printf("You can choose from 4 patterns and you can exit the program at any time.\n");
     printf("\n");
     printf("Here is an example of patterns of size 7\n");
-    printf ("Pattern 1	        Pattern 2	        Pattern 3	        Pattern 4   \n ");
+    printf ("Pattern 1          Pattern 2	        Pattern 3	        Pattern 4   \n ");
     printf ("* 7 7 7 7 7 7      * * * * * * *	    7 7 7 7 7 7 7	    * * * * * * 7 \n ");
     printf ("7 * 7 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * * 7 * \n ");
     printf ("7 7 * 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * 7 * * \n ");
