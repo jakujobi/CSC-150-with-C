@@ -109,14 +109,32 @@ int main ()
     return 0;
 }
 
+
 //This function prints a welcome statement
 void Welcome ()
 {
     printf("\n\n"); //To give space before the welcome statement
     printf("Welcome to the Pattern Program!\n");
     printf("This program prints a pattern of asterisks based on the user's input.\n");
+    printf("It will ask you for the size of the pattern and the pattern you want to print.\n");
+    printf("You can choose from 4 patterns and you can exit the program at any time.\n");
+    printf("\n");
+    printf("Here is an example of patterns of size 7\n");
+    printf ("Pattern 1	    Pattern 2	    Pattern 3	    Pattern 4   \n ");
+    printf ("* 7 7 7 7 7 7	* * * * * * *	7 7 7 7 7 7 7	* * * * * * 7 \n ");
+    printf ("7 * 7 7 7 7 7	* 7 7 7 7 7 *	7 * * * * * 7	* * * * * 7 * \n ");
+    printf ("7 7 * 7 7 7 7	* 7 7 7 7 7 *	7 * * * * * 7	* * * * 7 * * \n ");
+    printf ("7 7 7 * 7 7 7	* 7 7 7 7 7 *	7 * * * * * 7	* * * 7 * * * \n ");
+    printf ("7 7 7 7 * 7 7	* 7 7 7 7 7 *	7 * * * * * 7	* * 7 * * * * \n ");
+    printf ("7 7 7 7 7 * 7	* 7 7 7 7 7 *	7 * * * * * 7	* 7 * * * * * \n ");
+    printf ("7 7 7 7 7 7 *	* * * * * * *	7 7 7 7 7 7 7	7 * * * * * * \n ");
+    printf("\n\n"); //To give space after the welcome statement
+    printf("Have fun!\n");
     printf("\n");
 
+    printf("Press Enter to continue\n");
+    while (getchar()!='\n'); //To pause the program until the user presses enter
+    
     return;
 }
 
