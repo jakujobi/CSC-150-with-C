@@ -183,7 +183,8 @@ void Welcome ()
 //This function prints the Main_Menu
 void Main_Menu ()
 {
-    printf("Please select a pattern to print:\n");
+    printf("MAIN MENU\n");
+    //printf("Please select a pattern to print:\n");
     printf("1. Pattern 1\n");
     printf("2. Pattern 2\n");
     printf("3. Pattern 3\n");
@@ -202,8 +203,13 @@ void Pick_Pattern (option choice)
     //Calling the Get_Choice function
     choice = Get_Choice(choice);
 
-    //Calling the Get_Size function and storing the value in the variable size
-    int size = Get_Size(size);
+    int size;
+
+    if (choice != Exit) //Checks if the user wants to exit the program
+    {
+        //Calling the Get_Size function and storing the value in the variable size
+        size = Get_Size(size);
+    }
     
     //Switch statement to determine which pattern to print
     switch (choice)
@@ -225,7 +231,7 @@ void Pick_Pattern (option choice)
             break;
 
         case Exit:
-            printf("Thank you for using the Pattern Program!\n");
+            printf("\nThank you for using the Pattern Program!\n\n");
             exit(0);
             break;
 
@@ -378,7 +384,7 @@ void Draw_Pattern_4 (int size)
         for (col = 1; col <= size; col++)
         {
             //checks for where to print the number size
-            if ( row == (size-col+1))
+            if ( row == (size-col+1)) //or if (row + col == size+1)
             {
                 printf("%3d", size);
             }
