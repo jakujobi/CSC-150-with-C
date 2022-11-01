@@ -96,14 +96,15 @@ int main ()
     //Calling the Main_Menu function
     //Main_Menu();
 
+    //Do while loop to repeat the program
     do
     {
         //Calling the Pick_Pattern function
         Pick_Pattern(choice);
 
-        printf("Nice work! You've completed a pattern!\n\n")
+        printf("Nice work! You've completed a pattern!\n\n");
 
-    } while (choice != Exit);
+    } while (choice != Exit); //checks if the user wants to exit the program
 
     return 0;
 }
@@ -111,6 +112,7 @@ int main ()
 //This function prints a welcome statement
 void Welcome ()
 {
+    printf("\n\n"); //To give space before the welcome statement
     printf("Welcome to the Pattern Program!\n");
     printf("This program prints a pattern of asterisks based on the user's input.\n");
     printf("\n");
@@ -133,12 +135,13 @@ void Main_Menu ()
 }
 
 
+
 //This function calls the Get_Size function and the Get_Choice function
 //It uses the choice variable to determine which pattern will be executed
 void Pick_Pattern (option choice)
 {
 
-    //Calling the Get_Size function
+    //Calling the Get_Size function and storing the value in the variable size
     int size = Get_Size(size);
 
     //Calling the Get_Choice function
@@ -181,13 +184,13 @@ void Pick_Pattern (option choice)
 int Get_Size (int size)
 {
     //Declaring variables
-    int i;
+    //int i;
 
     //Receiving the size from the user
     printf("Please enter the size of the pattern: ");
     scanf("%d", &size);
 
-    //Validating the input
+    //Validating the input for incompatible values
     while (size < 1 || size > 20)
     {
         printf("Invalid size. Please try again: ");
@@ -202,7 +205,7 @@ int Get_Size (int size)
 option Get_Choice (option choice)
 {
     //Declaring variables
-    int i;
+    //int i;
 
     Main_Menu();
 
