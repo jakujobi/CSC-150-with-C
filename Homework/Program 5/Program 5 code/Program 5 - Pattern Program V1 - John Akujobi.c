@@ -75,6 +75,9 @@ CSC 150 S01
 //This defines the function type option for Get_Choice
 //It limits the number of choices
 typedef enum {Pattern_1, Pattern_2, Pattern_3, Pattern_4, Exit} option;
+typedef enum {Pattern_1 = 1, Pattern_2 = 2, Pattern_3 = 3, Pattern_4 = 4 , Exit = 5} option;
+//typedef enum {Pattern_1, Pattern_2, Pattern_3, Pattern_4, Exit} option;
+
 
 //Function prototypes
 void Welcome ();
@@ -82,6 +85,8 @@ void Main_Menu ();
 void Pick_Pattern (option choice);
 int Get_Size (int size);
 option Get_Choice (option choice);
+
+//Functions to draw the patterns
 void Draw_Pattern_1 (int size);
 void Draw_Pattern_2 (int size);
 void Draw_Pattern_3 (int size);
@@ -96,9 +101,6 @@ int main ()
 
     //Calling the Welcome function
     Welcome();
-
-    //Calling the Main_Menu function
-    //Main_Menu();
 
     //Do while loop to repeat the program
     do
@@ -125,14 +127,14 @@ void Welcome ()
 
     //Showing an example of the patterns
     printf("Here is an example of patterns of size 7\n");
-    printf (" Pattern 1          Pattern 2	            Pattern 3	            Pattern 4   \n");
-    printf ("* 7 7 7 7 7 7      * * * * * * *       7 7 7 7 7 7 7	    * * * * * * 7 \n");
-    printf ("7 * 7 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * * 7 * \n");
-    printf ("7 7 * 7 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * * 7 * * \n");
-    printf ("7 7 7 * 7 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * * 7 * * * \n");
-    printf ("7 7 7 7 * 7 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * * 7 * * * * \n");
-    printf ("7 7 7 7 7 * 7	    * 7 7 7 7 7 *	    7 * * * * * 7	    * 7 * * * * * \n");
-    printf ("7 7 7 7 7 7 *	    * * * * * * *	    7 7 7 7 7 7 7	    7 * * * * * * \n");
+    printf (" Pattern 1       Pattern 2          Pattern 3         Pattern 4   \n");
+    printf ("* 7 7 7 7 7 7     * * * * * * *     7 7 7 7 7 7 7     * * * * * * 7 \n");
+    printf ("7 * 7 7 7 7 7     * 7 7 7 7 7 *     7 * * * * * 7     * * * * * 7 * \n");
+    printf ("7 7 * 7 7 7 7     * 7 7 7 7 7 *     7 * * * * * 7     * * * * 7 * * \n");
+    printf ("7 7 7 * 7 7 7     * 7 7 7 7 7 *     7 * * * * * 7     * * * 7 * * * \n");
+    printf ("7 7 7 7 * 7 7     * 7 7 7 7 7 *     7 * * * * * 7     * * 7 * * * * \n");
+    printf ("7 7 7 7 7 * 7     * 7 7 7 7 7 *     7 * * * * * 7     * 7 * * * * * \n");
+    printf ("7 7 7 7 7 7 *     * * * * * * *     7 7 7 7 7 7 7     7 * * * * * * \n");
     printf("\n"); //To give space after the welcome statement
 
     /*
@@ -165,7 +167,7 @@ void Main_Menu ()
 void Pick_Pattern (option choice)
 {
     //Calling the Get_Choice function
-    Get_Choice(choice);
+    choice = Get_Choice(choice);
 
     //Calling the Get_Size function and storing the value in the variable size
     int size = Get_Size(size);
@@ -191,6 +193,7 @@ void Pick_Pattern (option choice)
 
         case Exit:
             printf("Thank you for using the Pattern Program!\n");
+            exit(0);
             break;
 
         default:
@@ -214,7 +217,7 @@ int Get_Size (int size)
     printf("\n");
 
     //Validating the input for incompatible values
-    while (size < 1 || size > 20)
+    while (size < 1 || size > 30)
     {
         printf("Invalid size. Please try again: ");
         scanf("%d", &size);
@@ -235,6 +238,8 @@ option Get_Choice (option choice)
     //Receiving the choice from the user
     printf("Please enter your choice: ");
     scanf("%d", &choice);
+
+    //choice = choice - 1; //Not needed anymore   
 
     //Validating the input
     while (choice < 1 || choice > 5)
