@@ -86,6 +86,11 @@ BUG #4: FIXED
     Bug: Nearly 14 syntax errors
     Fix: Most of them were missing semicolons and unpaired brackets
 
+BUG #5: FIXED
+    Bug: The program doesn't exit after choosing the exit option
+    Fix: Fixed by the change in the type def enum for the choice variable where i assigned the exit option to 5
+    `    also changed the exit statements to exit(0);
+
 */
 
 
