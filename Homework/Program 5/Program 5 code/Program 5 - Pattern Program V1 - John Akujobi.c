@@ -1,70 +1,90 @@
 /*
 This program prints a pattern of asterisks based on the user's input.
 
+Program Design, Copied from submitted homework
+    ### **Data Storage (defined in main)**
+        - int choice
+            - It holds the value for the choice picked by the user
+        - int size
+            - It holds the value for the pattern size picked by the user
 
-### **Data Storage (defined in main)**
-
-- int choice
-    - It holds the value for the choice picked by the user
-- int size
-    - It holds the value for the pattern size picked by the user
-
-### **Function Design (for each function, give the function’s prototype and 1 or 2 lines describing how the function works.)**
-
-- Welcome
-    - void Welcome ();
-    - It just prints a welcome statement telling the user about the program and its purpose and how to use it
-    - Doesn’t return or take any value
-- Main_Menu
-    - void Main_Menu ();
-    - It prints the Main_Menu, letting the user see the options.
-    - Doesn’t return or take any value
-- Pick_Pattern
-    - void Pick_Pattern (option choice);
-    - Function
-        - Calls the Get_Size function
-        - Calls the Get_Choice function
-        - It uses the choice variable to determine which pattern will be executed
-    - It comprises of switch statements
-    - It takes the value from the option variable “choice”
-    - It doesn’t return any value
-- Get_Size
-    - int Get_Size (int size);
-    - It receives the size from the user and validates the input, repeating until the input is compatible
-    - It doesn’t take any value
-    - It returns a value in the integer variable “size”
-- Get_Choice
-    - option Get_Choice (option choice);
-    - It receives the choice from the user and validates the input for errors
-    - It doesn’t take any value
-    - It returns a value in the option variable “choice”
-- Pattern_1
-    - void Pattern_1 (int size)
-    - It prints pattern 1
-    - Takes the integer variable “size”
-    - It doesn’t return any value
-- Pattern_2
-    - void Pattern_2 (int size)
-    - It prints pattern 2
-    - Takes the integer variable “size”
-    - It doesn’t return any value
-- Pattern_3
-    - void Pattern_3 (int size)
-    - It prints pattern 3
-    - Takes the integer variable “size”
-    - It doesn’t return any value
-- Pattern_4
-    - void Pattern_4 (int size)
-    - It prints pattern 4
-    - Takes the integer variable “size”
-    - It doesn’t return any value
+    ### **Function Design (for each function, give the function’s prototype and 1 or 2 lines describing how the function works.)**
+        - Welcome
+            - void Welcome ();
+            - It just prints a welcome statement telling the user about the program and its purpose and how to use it
+            - Doesn’t return or take any value
+        - Main_Menu
+            - void Main_Menu ();
+            - It prints the Main_Menu, letting the user see the options.
+            - Doesn’t return or take any value
+        - Pick_Pattern
+            - void Pick_Pattern (option choice);
+            - Function
+                - Calls the Get_Size function
+                - Calls the Get_Choice function
+                - It uses the choice variable to determine which pattern will be executed
+            - It comprises of switch statements
+            - It takes the value from the option variable “choice”
+            - It doesn’t return any value
+        - Get_Size
+            - int Get_Size (int size);
+            - It receives the size from the user and validates the input, repeating until the input is compatible
+            - It doesn’t take any value
+            - It returns a value in the integer variable “size”
+        - Get_Choice
+            - option Get_Choice (option choice);
+            - It receives the choice from the user and validates the input for errors
+            - It doesn’t take any value
+            - It returns a value in the option variable “choice”
+        - Pattern_1
+            - void Pattern_1 (int size)
+            - It prints pattern 1
+            - Takes the integer variable “size”
+            - It doesn’t return any value
+        - Pattern_2
+            - void Pattern_2 (int size)
+            - It prints pattern 2
+            - Takes the integer variable “size”
+            - It doesn’t return any value
+        - Pattern_3
+            - void Pattern_3 (int size)
+            - It prints pattern 3
+            - Takes the integer variable “size”
+            - It doesn’t return any value
+        - Pattern_4
+            - void Pattern_4 (int size)
+            - It prints pattern 4
+            - Takes the integer variable “size”
+            - It doesn’t return any value
 
 Created by John Akujobi
 
-On the 29th of October 2022
+On the 27th of October 2022
 Finished on the 1st of November 2022
 
 CSC 150 S01
+
+BUG #1: FIXED
+    Bug:Code not executing properly
+    Fix: Hidden syntax error caused by missing }
+
+BUG #2: FIXED
+    Bug: Pattern 4 gives a whole row full of the size value
+    Fix: Changed the if expression
+        from if ( row == (size-row+1) || col == (size-col+1))
+        to if ( row == (size-col+1))
+
+BUG #3: FIXED
+    Bug: The program gives the same pattern for all input
+    Fix: Removed choice = choice - 1; from the Get_choice function
+         Defined all the options in the type def enum for the choice variable
+         Replaced Get_Choice(choice); from the Get_choice function
+            with int choice = Get_Choice(choice); //Didn't work
+            Then tried choice = Get_Choice(choice); //Worked
+
+BUG #4: FIXED
+    Bug: Nearly 14 syntax errors
+    Fix: Most of them were missing semicolons and unpaired brackets
 
 */
 
@@ -73,24 +93,30 @@ CSC 150 S01
 #include <stdlib.h>
 
 //This defines the function type option for Get_Choice
-//It limits the number of choices
-typedef enum {Pattern_1, Pattern_2, Pattern_3, Pattern_4, Exit} option;
-typedef enum {Pattern_1 = 1, Pattern_2 = 2, Pattern_3 = 3, Pattern_4 = 4 , Exit = 5} option;
-//typedef enum {Pattern_1, Pattern_2, Pattern_3, Pattern_4, Exit} option;
+//typedef enum {Pattern_1, Pattern_2, Pattern_3, Pattern_4, Exit} option; //Found a more efficient way to do this
+
+typedef enum //The method i learned from StackOverflow in which the options are assigned a value
+{ 
+    Pattern_1 = 1,
+    Pattern_2 = 2,
+    Pattern_3 = 3,
+    Pattern_4 = 4 ,
+    Exit = 5
+} option;
 
 
 //Function prototypes
-void Welcome ();
-void Main_Menu ();
-void Pick_Pattern (option choice);
-int Get_Size (int size);
-option Get_Choice (option choice);
+void Welcome ();    //Prints a welcome statement to the user
+void Main_Menu ();  //Prints the main menu
+void Pick_Pattern (option choice);  //Picks a pattern based on the user's choice gotten in Get_Choice. Will use switch statement
+int Get_Size (int size);    //This function gets the size of the pattern
+option Get_Choice (option choice);  //This function gets the choice of the pattern
 
 //Functions to draw the patterns
-void Draw_Pattern_1 (int size);
-void Draw_Pattern_2 (int size);
-void Draw_Pattern_3 (int size);
-void Draw_Pattern_4 (int size);
+void Draw_Pattern_1 (int size); //Pattern_1
+void Draw_Pattern_2 (int size); //Pattern_2
+void Draw_Pattern_3 (int size); //Pattern_3
+void Draw_Pattern_4 (int size); //Pattern_4
 
 
 int main ()
@@ -138,6 +164,7 @@ void Welcome ()
     printf("\n"); //To give space after the welcome statement
 
     /*
+    //Tried to add a pause statement but later decided that it wouldn't add much to user experience
     printf("Press Enter to continue-->");
     while (getchar()!='\n'); //To pause the program until the user presses enter
     printf("\n\n");
@@ -212,14 +239,14 @@ int Get_Size (int size)
     //int i;
 
     //Receiving the size from the user
-    printf("Please enter the size of the pattern: ");
+    printf("Please enter the size of the pattern (up to 40)---->:");
     scanf("%d", &size);
     printf("\n");
 
     //Validating the input for incompatible values
-    while (size < 1 || size > 30)
+    while (size < 1 || size > 40)
     {
-        printf("Invalid size. Please try again: ");
+        printf("Oops! Invalid size.\nPlease try again---->:");
         scanf("%d", &size);
     }
 
@@ -236,7 +263,7 @@ option Get_Choice (option choice)
     Main_Menu();
 
     //Receiving the choice from the user
-    printf("Please enter your choice: ");
+    printf("Please enter your choice---->:");
     scanf("%d", &choice);
 
     //choice = choice - 1; //Not needed anymore   
