@@ -245,12 +245,12 @@ int Get_Size (int size)
     //int i;
 
     //Receiving the size from the user
-    printf("Please enter the size of the pattern (up to 40)---->:");
+    printf("Please enter the size of the pattern (5 to 10)---->:");
     scanf("%d", &size);
     printf("\n");
 
     //Validating the input for incompatible values
-    while (size < 1 || size > 40)
+    while (size < 5 || size > 10)
     {
         printf("Oops! Invalid size.\nPlease try again---->:");
         scanf("%d", &size);
@@ -269,7 +269,7 @@ option Get_Choice (option choice)
     Main_Menu();
 
     //Receiving the choice from the user
-    printf("Please enter your choice---->:");
+    printf("Please enter your choice (1 to 5)---->:");
     scanf("%d", &choice);
 
     //choice = choice - 1;
