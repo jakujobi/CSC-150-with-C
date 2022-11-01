@@ -78,10 +78,10 @@ void Main_Menu ();
 void Pick_Pattern (option choice);
 int Get_Size (int size);
 option Get_Choice (option choice);
-void Pattern_1 (int size);
-void Pattern_2 (int size);
-void Pattern_3 (int size);
-void Pattern_4 (int size);
+void Draw_Pattern_1 (int size);
+void Draw_Pattern_2 (int size);
+void Draw_Pattern_3 (int size);
+void Draw_Pattern_4 (int size);
 
 
 int main ()
@@ -133,16 +133,15 @@ void Main_Menu ()
 
 //This function calls the Get_Size function and the Get_Choice function
 //It uses the choice variable to determine which pattern will be executed
-void Pick_Pattern (option choice)
+void Pick_Pattern ()
 {
-    //Declaring variables
-    int size;
 
     //Calling the Get_Size function
-    Get_Size(size);
+    int size = Get_Size(size);
 
     //Calling the Get_Choice function
-    Get_Choice(choice);
+    int choice = Get_Choice(choice);
+    
 
     //Switch statement to determine which pattern to print
     switch (choice)
@@ -197,3 +196,122 @@ int Get_Size (int size)
 }
 
 
+//This function receives the choice from the user and validates the input for errors
+option Get_Choice (option choice)
+{
+    //Declaring variables
+    int i;
+
+    Main_Menu();
+
+    //Receiving the choice from the user
+    printf("Please enter your choice: ");
+    scanf("%d", &choice);
+
+    //Validating the input
+    while (choice < 1 || choice > 5)
+    {
+        printf("Invalid choice. Please try again: ");
+        scanf("%d", &choice);
+    }
+
+    return choice;
+}
+
+
+//This function prints pattern 1
+void Draw_Pattern_1 (int size)
+{
+    //Declaring variables
+    int i;
+    int j;
+
+    //Printing the pattern
+    for (i = 1; i <= size; i++)
+    {
+        for (j = 1; j <= i; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return;
+}
+
+
+//This function prints pattern 2
+void Draw_Pattern_2 (int size)
+{
+    //Declaring variables
+    int i;
+    int j;
+
+    //Printing the pattern
+    for (i = 1; i <= size; i++)
+    {
+        for (j = 1; j <= size; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return;
+}
+
+
+//This function prints pattern 3
+void Draw_Pattern_3 (int size)
+{
+    //Declaring variables
+    int i;
+    int j;
+
+    //Printing the pattern
+    for (i = 1; i <= size; i++)
+    {
+        for (j = 1; j <= size; j++)
+        {
+            if (i == 1 || i == size || j == 1 || j == size)
+            {
+                printf("*");
+            }
+            else
+            {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+
+    return;
+}
+
+
+//This function prints pattern 4
+void Draw_Pattern_4 (int size)
+{
+    //Declaring variables
+    int i;
+    int j;
+
+    //Printing the pattern
+    for (i = 1; i <= size; i++)
+    {
+        for (j = 1; j <= size; j++)
+        {
+            if (i == 1 || i == size || j == 1 || j == size || i == j || i + j == size + 1)
+            {
+                printf("*");
+            }
+            else
+            {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+
+    return;
+}
