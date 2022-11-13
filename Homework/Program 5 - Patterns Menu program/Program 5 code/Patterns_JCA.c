@@ -276,14 +276,24 @@ option Get_Choice (option choice)
 
     //Receiving the choice from the user
     printf("Please enter your choice (1 to 5)---->:");
-    scanf("%d", &choice);
+    int check = scanf("%d", &choice);
 
     //choice = choice - 1;
     //Not needed anymore   
-
-    //Validating the input
-    while (choice < 1 || choice > 5)
+    /*while (check != 1)
     {
+        printf("Oops! Invalid choice.\nPlease try again---->:");
+        scanf("%d", &choice);
+    }*/
+    //Validating the input
+    while (choice*1 < 1 || choice*1 > 5)
+    {
+        if (check != 1)
+        {
+            printf("Oops! Invalid choice.\nPlease try again---->:");
+            scanf("%d", &choice);
+        }
+
         printf("Invalid choice. Please try again: ");
         scanf("%d", &choice);
     }
