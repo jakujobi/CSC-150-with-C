@@ -48,9 +48,10 @@ int main ()
         while (fscanf ( inFile, " %d", &num ) != EOF)
     {
         count ++;
+        sum += num;
+        
         fprintf (outFile, "%d\n", count);
         fprintf (outFile, "num: %d\n", num);
-        sum += num;
         fprintf (outFile, "sum: %d\n\n", sum);
 
         average = sum / count;
