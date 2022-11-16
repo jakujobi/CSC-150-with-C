@@ -95,40 +95,43 @@ void End_Program (FILE *infile_tornado, FILE *outfile_report);
 int main ()
 {
     //Declare Variables
-    FILE *infile_tornado;
-    FILE *outfile_report;
-    int fujita_scale;
-    float path_length_miles;
-    int path_width_yards;
-    float affected_area;
-    float running_total = 0;
-    int data_fetched;
+
+    //The files used by the program
+    FILE *infile_tornado;   //The Input tornado.txt file
+    FILE *outfile_report;   //The Output Report.txt file
+
+    int fujita_scale;    //first data on each line, has to be between 0 - 6
+
+    float path_length_miles;    //Path length of the tornado
+
+    int path_width_yards;   //path_width of the tornado in yards
+
+    float affected_area;    //calculated area affected by each tornado
+
+    float running_total;    //the running total of the affected area
+
+    int data_fetched;   //used to check if data was fetched from the file
     
     //Function Calls
     Welcome (); //Prints a welcome statement and tells the user the purpose of the program
     
     Open_File (infile_tornado); //Opens the tornado file and reads from it
-    
-    printf("\nCalled Open_File\n");
+    printf("\nCalled Open_File\n"); //testing the open function
 
     Open_OutFile (outfile_report);  //Creates or Opens the Report.txt file
+    printf("\nCalled Open_OutFile\n"); //testing to check if it ran successfully
 
-    printf("\nCalled Open_OutFile\n");
+    Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards); //Reads a line of data from the tornado.txt
+    printf("\nCalled Get_Data\n"); //testing to check if it ran successfully
 
-    data_fetched = Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards); //Reads a line of data from the tornado.txt
-
-    while (data_fetched == 1)
+    while (Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards))
     {     
-        printf("\nEntered the while loop\n");
-
-        data_fetched = Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards); //Reads a line of data from the tornado.txt
-
-        printf("\nCalled Get_Data\n");
+        printf("\nEntered the while loop\n"); //testing to check when the while loop starts
 
         Calc_Area (&affected_area, &path_length_miles, &path_width_yards);
         //Calculates the area affected for each tornado and keeps a running total of the areas
 
-        printf("\nCalled Calc_Area\n");
+        printf("\nCalled Calc_Area\n"); //testing to check Calc_Area ran successfully
 
         Print_Line (outfile_report, &fujita_scale, &path_length_miles, &path_width_yards, &affected_area);
 
@@ -181,14 +184,15 @@ int Open_File (FILE *infile_tornado)
 int Open_OutFile (FILE *outfile_report)
 {
     outfile_report = fopen("Report.txt", "w");
-
     printf("outfile report ran\n");
 
+    //Check if file is opened successfully and prints a message to the terminal
     if (!(outfile_report))
     {
-        printf("Error opening Report.txt file. Please check if the file exists.\n");
+        printf("Error opening Report.txt file.\nPlease check if the file exists.\n");
         return 404;
     }
+    //Else it prints an error message to the terminal
     else
     {
         printf("Report.txt File opened successfully.");
@@ -199,9 +203,22 @@ int Open_OutFile (FILE *outfile_report)
 
 int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles, int *path_width_yards)
 {
-    int data_fetched;
-    data_fetched = fscanf(infile_tornado, "%d %f %d", fujita_scale, path_length_miles, path_width_yards);
-    return data_fetched;
+    printf("Opened Get_Data\n");
+    int data_fetching;
+
+    data_fetching = fscanf(infile_tornado, "%d %f %d", fujita_scale, path_length_miles, path_width_yards);
+    printf("data_fetching = %d \n", data_fetching);
+
+    if (data_fetching == EOF || data_fetching != 3)
+    {
+        printf("End of file reached.\n");
+        return 0;
+    }
+    else
+    {
+        printf("Data Fetched: %d\n", data_fetching);
+        return 1;
+    }
 }
 
 void Calc_Area (float *affected_area, float *path_length_miles, int *path_width_yards)
