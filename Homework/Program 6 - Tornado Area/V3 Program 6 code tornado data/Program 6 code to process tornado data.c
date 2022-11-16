@@ -125,16 +125,33 @@ int main ()
     if (!(infile_tornado))
     {
         printf("Error opening Report.txt file.\nPlease check if the file exists.\n");
-        return 404;
+        //return 404;
     }
     else //prints a success message to the terminal
     {
         printf("tornado.txt file opened successfully.\n");
-        return 0;
+        //return 0;
     }
+
 
     Open_OutFile (outfile_report);  //Creates or Opens the Report.txt file
     printf("\nCalled Open_OutFile\n"); //testing to check if it ran successfully
+
+    outfile_report = fopen("Report.txt", "w");
+    printf("outfile report ran\n");
+
+    //Check if file is opened successfully and prints a message to the terminal
+    if (!(outfile_report))
+    {
+        printf("Error opening Report.txt file.\nPlease check if the file exists.\n");
+        //return 404;
+    }
+    //Else it prints an error message to the terminal
+    else
+    {
+        printf("Report.txt File opened successfully.");
+        //return 0;
+    }
 
     Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards); //Reads a line of data from the tornado.txt
     printf("\nCalled Get_Data\n"); //testing to check if it ran successfully
@@ -185,21 +202,7 @@ int Open_File (FILE *infile_tornado)
 
 int Open_OutFile (FILE *outfile_report)
 {
-    outfile_report = fopen("Report.txt", "w");
-    printf("outfile report ran\n");
-
-    //Check if file is opened successfully and prints a message to the terminal
-    if (!(outfile_report))
-    {
-        printf("Error opening Report.txt file.\nPlease check if the file exists.\n");
-        return 404;
-    }
-    //Else it prints an error message to the terminal
-    else
-    {
-        printf("Report.txt File opened successfully.");
-        return 0;
-    }
+    //
 }
 
 
