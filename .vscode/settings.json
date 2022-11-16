@@ -3,5 +3,8 @@
         "Akujobi",
         "Kocha",
         "Pocha"
-    ]
+    ],
+    "files.associations": {
+        "PRINT1~1.C": "cpp"
+    }
 }

@@ -35,15 +35,25 @@ int main ()
 
 // Retrieve file
     if (!(inTornado = fopen ("tornado.txt", "r"))) // opening infile
-        {
-        printf("\aError opening tornado file\n");
-        return 100;
-        }
+    {
+    printf("\aError opening tornado file\n");
+    return 100;
+    }
+
+    else
+    {
+    printf("Input file opened successfully\n");
+    }
+
     if (!(outReport = fopen ("report.txt", "w"))) // opening outfile
-	   {
-	    printf("\aError opening report file\n");
-	    return 102;
-	   }
+    {
+        printf("\aError opening report file\n");
+    return 102;
+    }
+    else
+    {
+        printf("Output file created/opened successfully\n");
+    }
 
 // Calculates total affected area and prints into outfile
     while (getFile (inTornado, &ratingEF, &pathLength, &pathWidth))
@@ -101,10 +111,8 @@ int getFile (FILE* inTornado, int* ratingEF, float* pathLength, int* pathWidth)
 void calcPath (float pathLength, int pathWidth, int affectArea, int* runTotal)
 {
 //	Local Declarations
-    float pathwidthMiles;
 
-    pathwidthMiles = pathWidth / 1760.0;
-    affectArea = pathLength + pathwidthMiles/;
+    affectArea = pathLength * pathwidth / 1760; //the 1760 is to convert yards to miles
 
     runTotal = affectArea + runTotal;
     printf("pathwidthMiles: %f,    Affected Area: %d, Running Total: %d\n", pathwidthMiles, affectArea, runTotal);
