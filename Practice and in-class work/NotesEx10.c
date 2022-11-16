@@ -54,6 +54,7 @@ int main (void)
 	return 0;
 }	// main
 
+
 /* ======================== getStu =======================
 	Reads data from student file.
 	   Pre   spStu is an open file.
@@ -69,8 +70,7 @@ int getStu (FILE* spStu, int* stuID, int* exam1,
 	int ioResult;
 
 //	Statements
-	ioResult = fscanf(spStu, "%d%d%d%d", stuID,
-	                  exam1, exam2, final);
+	ioResult = fscanf(spStu, "%d%d%d%d", stuID, exam1, exam2, final);
 	if (ioResult == EOF)
 	    return 0;
 	else if (ioResult != 4)
@@ -88,8 +88,7 @@ int getStu (FILE* spStu, int* stuID, int* exam1,
 	         avrg and grade are addresses of variables
 	   Post  Average and grade copied to addresses
 */
-void calcGrade (int  exam1, int   exam2, int final,
-                int* avrg,  char* grade)
+void calcGrade (int  exam1, int   exam2, int final, int* avrg,  char* grade)
 {
 //	Statements
 	*avrg = (exam1 + exam2 + final) / 3;
