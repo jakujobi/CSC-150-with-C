@@ -174,10 +174,9 @@ int main ()
     FILE *infile_tornado;   //The Input tornado.txt file
     FILE *outfile_report;   //The Output Report.txt file
 
-    int fujita_scale;
-        //first data on each line, has to be between 0 - 6
-    float path_length_miles;
-        //Path length of the tornado
+    int fujita_scale;   //first data on each line
+
+    float path_length_miles;    //Path length of the tornado
 
     int path_width_yards;   //path_width of the tornado in yards
 
@@ -230,6 +229,11 @@ int main ()
 
     Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards); //Reads a line of data from the tornado.txt
     printf("\nTest - Called Get_Data\n"); //testing to check if it ran successfully
+
+    //prints the first column to the Report.txt file
+    fprintf(outfile_report, "EF Rating\t\tPath Length\tPath Width\tAffected Area\n");
+    fprintf(outfile_report, "Fujita Scale\t(Miles)\tYards\tSquare Miles\n");
+
 
     while (Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards))
     {
@@ -298,7 +302,7 @@ int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles,
 
     //BUGGGG - This code is leading to a segmentation fault
     data_fetching = fscanf(infile_tornado, "%d %f %d", fujita_scale, path_length_miles, path_width_yards);
-    printf("data_fetching has been done");
+    printf("Test - Data_fetching has been done\n");
 
     if (data_fetching == EOF)
     {
@@ -324,30 +328,31 @@ int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles,
 }
 
 //This function calculates the area affected for each tornado and keeps a running total of the areas
-
 void Calc_Area (float *affected_area, float *path_length_miles, int *path_width_yards)
 {
     printf("Test - Opened Calc_Area\n");
     float path_width_miles = *path_width_yards / 1760.0;
+        //converts the path_width from yards to miles
     float affectedArea = *path_length_miles * path_width_miles;
+        //calculates the affected area for each tornado
     *affected_area = affectedArea;
 
     printf("Test - Calculated the affected area\n");
 }
 
+//This function prints one line into the report file
 int Print_Line (FILE *outfile_report, int *fujita_scale, float *path_length_miles, int *path_width_yards, float *affected_area)
 {
     printf("Test - Opened Print_Line\n");
 
-    fprintf(outfile_report, "%d %f %d %f", *fujita_scale, *path_length_miles, *path_width_yards, *affected_area);
-    fprintf(outfile_report, "%d %f %d %f", *fujita_scale, *path_length_miles, *path_width_yards, *affected_area);
+    fprintf(outfile_report, "%d \t %5.4f \t %5d \t %5.4f", *fujita_scale, *path_length_miles, *path_width_yards, *affected_area);
+    fprintf(outfile_report, "\n");
 
     printf("Test - Printed the line\n");
     return 0;
 }
 
-
-
+//This function closes the files and prints a message to the terminal
 void End_Program (FILE *infile_tornado, FILE *outfile_report)
 {
     printf("Test - Opened End_Program\n");
