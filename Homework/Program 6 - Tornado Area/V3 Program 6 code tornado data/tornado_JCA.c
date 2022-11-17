@@ -359,7 +359,7 @@ int Print_Line (FILE *outfile_report, int *fujita_scale, float *path_length_mile
 {
     printf("Test - Opened Print_Line\n");
 
-    fprintf(outfile_report, "%d \t\t\t\t%8.4f\t\t\t%7d\t\t\t%8.4f", *fujita_scale, *path_length_miles, *path_width_yards, *affected_area);
+    fprintf(outfile_report, "%d \t\t\t\t%8.4f\t\t%7d\t\t\t\t%8.4f", *fujita_scale, *path_length_miles, *path_width_yards, *affected_area);
     fprintf(outfile_report, "\n");
 
     printf("Test - Printed the line\n");
