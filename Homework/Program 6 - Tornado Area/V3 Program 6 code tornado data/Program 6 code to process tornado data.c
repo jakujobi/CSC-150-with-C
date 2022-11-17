@@ -1,6 +1,11 @@
 /*
 This program will read in a file of tornado data and calculate the area affected by each tornado.
 The program will then output the data to a file called report.txt.
+
+Created by: John Akujobi
+On the 10th of November 2022
+
+CSC 150 - 01
 */
 
 //Program Design
@@ -122,14 +127,24 @@ Updated on the 16th of November 2022 - V4
 /*
 BUG #1 - Segmentation Error
     - Fixed
-BUG #2 - Segmentation Error
-
+    - Relocated the contents of Open_File to the main function
+    - Relocated the contents of Open_OutFile to the main function
+    - After these changes, the program ran successfully
+BUG #2 - Program would not run
+    - Fixed by changing the variable [data_fetched] to a pointer
+    - The variable was being used in the function Get_Data
+    - After this change, the program ran successfully
+BUG #3 - The data in the report file was not being printed correctly
+    - Fixed by adding a new line character to the end of the Print_Line function
+    - Then added tab spaces using \t
 */
+
 
 
 //Get Libraries
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> //for exit() function
+                    //but was not used in this program
 
 //Function Prototypes
 void Welcome ();
