@@ -1,10 +1,33 @@
 /*
- * 
- * 
- */
+Created by John Akujobi
+On the 19th of November, 2022
 
-#include <stdio.h>
-#include <stdlib.h>
+This is a hospital program that assists medical professionals with the calculation of intravenous rates.
+It can be configuresd with a user menu to take in multiple types of inputs.
+*/
+
+/*
+	BUG #0 (syntax errors)
+ 	-Fixed all the syntax errors which included
+  		-missing semicolons
+      -incorrect spellings of varibles and functions
+      
+	BUG #0.0 (Inefficient use of time)
+	- Lessons
+  		- Make sure to cleary plan the code before writing
+      - It's okay to use pencil and paper to plan
+      - Not every feature has to be in a functions, core features can be put in the main function
+      - You can place prototypes, comments and definitions of functions before the main comments
+      			- The function definitions don't always have to come after the main function
+          	- That way, you can reduce the repeatition of comments
+          	- You can even give example of the function call in the comments to make it easy to use
+          				- and it will reduce rewriting when calls
+*/
+
+#include <stdio.h> //for the scanf and printf functions
+
+#include <stdlib.h> //For the exit(0); function called in Option 5
+
 
 void print_Welcome ();
 	//- Prints a welcome statement
@@ -121,7 +144,6 @@ void get_number_of_hours_OP2 (float *number_of_hours)
          
 
 
-
 void get_patient_weight_OP3 (float *rate_mg_per_kg_per_hr, float *patient_weight_kg, float *conc_mg_per_ml);
 	//- Prompts the user to enter the data required for Option 3,
   //- and sends this data back to the calling module via output parameters.
@@ -181,8 +203,7 @@ void get_units_conc_OP4 (float *rate_units_per_hr, float *conc_units_per_ml)
 }
          
          
-         
-         
+                
 int rounding (float number);
 	//-This function rounds up the float to the nearest whole number
   //- and returns it as an integer
@@ -227,8 +248,7 @@ int OP2_fig_ml_hr (float *number_of_hours)
 }
 
          
-  
-  
+   
 int OP3_by_weight (float *rate_mg_per_kg_per_hr, float *patient_weight_kg, float *conc_mg_per_ml);
 	//- Takes as input parameters rate in mg/kg/hr, patient weight in kg, 
 	//- and concentration of drug in mg/ml
