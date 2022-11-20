@@ -1,0 +1,282 @@
+/*
+Created by John Akujobi
+On the 19th of November, 2022
+
+A hospital supply company wants to market a program to assist with the calculation of intravenous rates.
+Design and implement a program that interacts with the user as follows: 
+
+INTRAVENOUS RATE ASSISTANT 
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+
+Problem> 1 
+Enter rate in ml/hr=> 150 
+Enter tubing's drop factor(drops/ml)=> 15 
+The drop rate per minute is 38.
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+Problem=> 2 
+Enter number of hours=> 8 
+The rate in milliliters per hour is 125. 
+//The calculation is 1000/hr
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+Problem=> 3 
+Enter rate in mg/kg/hr=> 0.6 
+Enter patient weight in kg=> 70 
+Enter concentration in mg/ml=> 1 
+The rate in milliliters per hour is 42. 
+// 70 * 0.6 / 1
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+Problem=> 4 
+Enter rate in units/hr=> 1000 
+Enter concentration in units/ml=> 25 
+The rate in milliliters per hour is 40. 
+//1000 / 40
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT
+
+Problem=> 5 
+
+
+Implement the following functions: 
+
+print_Menu ();
+	- Prints the user menu
+  
+//Definition
+void print_Menu()
+{
+  //This function prints the user menu to the terminal
+  printf("\n\n;
+  printf("----------------------MENU----------------------\n");
+  printf(" GIVEN A MEDICAL ORDER IN CALCULATE RATE IN \n");
+  printf("(1) OPTION 1 \n");
+  printf("    [ml/hr & tubing drop factor drops/min] \n");
+  printf("    [calculates drops/min] \n");
+  printf("(2) OPTION 2 \n");
+  printf("    [1L for X hrs] \n");
+  printf("(3) OPTION 3 \n");
+  printf("    [mg/kg/hr & concentration in mg/ml] \n");
+  printf("(4) OPTION 4")
+  printf("    [Units/hr & concentration in units/ml] \n");
+  printf("(5) QUIT \n\n;
+  printf("\n\n;
+}
+
+
+
+get_problem ();
+	- Displays the user menu, then inputs
+  - returns as the function value the problem number selected. 
+  
+//Definition
+int get_problem ()
+{
+	//declaring the local variable to represent the choice picked
+	int option;
+  
+  //prints the user menu
+  print_Menu();
+  
+  //Prompt the user for their choice
+	printf("Enter the option you want to solve (1 - 5) --->:");
+  scanf("%d" option);
+  printf("\n\n;
+  
+  return option;
+}
+  
+
+
+int main ();
+	- Takes in the problem number selected
+  - and uses switch statements to pick then call the respective function
+//
+int main ()
+{
+	//Declare the variables
+  
+  
+	print_Welcome ();
+  
+  do
+  {
+  	option = get_problem ();
+    
+    if (option < 1 || option > 5)
+    {
+    
+    }
+    
+    else if (option)
+    {
+    	drop_rate_per_minute = OP1####
+    	printf ("The drop rate per minute is %.0f.\n\n\n", drop_rate_per_minute);
+    }
+    
+    else if (option == 5)
+    {
+    	printf("Have a good day!\n");
+      exit (0);
+    }
+    
+    else
+    {
+    	//This switch statements will process the other choices
+      switch (option)
+      {
+        case 2:
+          //
+          ml_per_hr = OP2_fig_ml_hr (&number_of_hours);
+          break;
+
+        case 3
+          //
+          ml_per_hr = OP3_by_weight (&rate_mg_per_kg_per_hr, &patient_weight_kg, &conc_mg_per_ml);
+
+          break;
+
+        case 4
+          //
+          ml_per_hr = OP4_by_units (&rate_units_per_hr, &conc_units_per_ml);
+          break;
+      }
+    }
+    
+    printf("The 
+  
+  } while (option != 5)
+  
+  return 0;
+}
+
+ 
+
+print_Welcome ();
+	- Prints a welcome statement
+  - Tells the user the purpose of the program
+  
+void print_Welcome ()
+{
+
+}
+
+
+
+get_rate_drop_factor (&)
+	- Prompts the user to enter the data required for problem 1,
+  - and sends this data back to the calling module via output parameters.
+
+
+
+get_patient_weight
+	- Prompts the user for the weight of the patient
+  - and sends this data back to the calling module via output parameters.
+
+
+  
+get_kg_rate_conc
+	- Prompts the user to enter the data required for problem 3,
+  - and sends this data back to the calling module via output parameters. 
+
+
+
+get_units_conc
+	- Prompts the user to enter the data required for problem 4,
+  - and sends this data back to the calling module via output parameters. 
+  
+
+
+OP1_fig_drops_min
+	- Takes rate and drop factor as input parameters
+  and returns drops/min (rounded to nearest whole drop) as function value.
+\\Definition
+{
+	return drop_rate_per_minute;
+}
+
+
+
+OP2_fig_ml_hr (&number_of_hours);
+	- Takes as an input parameter the number of hours over which one liter is to be delivered
+  - and returns ml/hr (rounded) as function value. 
+//Function Definition
+float OP2_fig_ml_hr (float *number_of_hours)
+{
+ 
+  //calculating ml_per_hr
+  float ml_per_hr = 1000 / (*number_of_hours);
+  
+  //returning ml_per_hr
+  return ml_per_hr;
+}
+
+
+
+OP3_by_weight (&rate_mg_per_kg_per_hr, &patient_weight_kg, &conc_mg_per_ml);
+	- Takes as input parameters rate in mg/kg/hr, patient weight in kg, 
+	- and concentration of drug in mg/ml
+  - and returns ml/hr (rounded) as function value. 
+  
+//Function Definition
+float OP3_by_weight (float *rate_mg_per_kg_per_hr, float *patient_weight_kg, float *conc_mg_per_ml)
+{
+	float ml_per_hr =  ( (*rate_mg_kg_hr) * (*patient_weight_kg) ) 
+  										/ (*drug_conc_mg_ml);
+	return ml_per_hr;
+}
+
+
+
+OP4_by_units (&rate_units_per_hr, &conc_units_per_ml);
+	- Takes as input parameters rate in units/hr and concentration in units/ml,
+  and returns ml/hr (rounded) as function value. 
+//Definition
+float OP4_by_units (float *rate_units_per_hr, float *conc_units_per_ml)
+{
+	float ml_per_hr =  ( (*rate_units_per_hr) / (*conc_units_per_ml) );
+	return ml_per_hr;
+}
+
+
+  
+( Hint: Use a sentinel-controlled loop. Call get_problem once before the loop 
+to initialize the problem number and once again at the end of the loop body to 
+update it.)
+*/
+
+//Code
+
+#include <stdio.h>
+#include <stdlib.h>
