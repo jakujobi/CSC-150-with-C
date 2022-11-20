@@ -1,0 +1,68 @@
+// Caleb McGregor
+//Write a program in C to read up to 10 numbers from keyboard and find their sum and average.
+// Also make it stop when there is a EOF
+//Also use the break statement
+
+#include <stdio.h>
+
+//prototypes functions
+ float readNum ();
+ float calcAvg (float sum, int count);
+ 
+
+int main()
+{
+  int count = 0;
+	float num = 0.0;
+  float sum = 0.0;
+  float avg = 0.0;
+  
+
+  // call function to read, calculate sum and average
+  while(count < 10)
+  {
+     num = readNum();
+
+    if (num != EOF)
+    {
+      sum += num;
+      count++; 
+    }
+    
+    else
+    {
+      break;
+    }
+  
+  }
+
+  avg = calcAvg(sum, count);
+   
+  printf("There were %d ", count);
+  printf("The sum was %8.4f ", sum);
+  printf("The average was %8.4f", avg);
+   
+  return 0;
+}
+  
+  
+float readNum()
+{
+  float num;
+
+  printf("Enter number: ");
+  scanf("%f", &num);
+
+  return num;
+}
+
+
+float calcAvg(float sum, int count)
+{
+  float avg;
+  float countf = count;
+  avg = sum / countf;
+
+	return avg;
+}
+
