@@ -76,11 +76,11 @@ float running_total
         Opens the tornado file and reads from it
         Prints error or success message to the terminal
         Returns 404 if unsuccessful
-3.	int Get_Data (File *infile_tornado, int *fujita_scale, float *path_length_miles, int *path_width_yards);
+3.	int Get_Data (File *infile_tornado, int *fujita_scale, float *path_length_miles, float *path_width_yards);
         It reads a line of data from the tornado.txt
         Stores them into the pointers
         Uses a local variable [data_fetched]
-4.	void Calc_Area (float *affected_area, float *path_length_miles, int *path_width_yards);
+4.	void Calc_Area (float *affected_area, float *path_length_miles, float *path_width_yards);
         Calculates the area affected for each tornado and keeps a running total of the areas
         Uses the formula [path_width_miles * path_length_yards /1760]
             Divided by 1760 to convert the yards to miles
@@ -89,7 +89,7 @@ float running_total
         Tells the terminal if file is successfully opened or not
         Returns 404 if unsuccessful
 
-6.	int Print_Line (File *outfile_report, int *fujita_scale, float *path_length_miles, int *path_width_yards, float *affected_area););
+6.	int Print_Line (File *outfile_report, int *fujita_scale, float *path_length_miles, float *path_width_yards, float *affected_area););
         Prints one line into the report file
 
 7.	void Print_Report (File *outfile_report, float *running_total);
@@ -125,18 +125,25 @@ Updated on the 16th of November 2022 - V4
 
 //Bugs
 /*
-BUG #1 - Segmentation Error
-    - Fixed
+BUG #1 - Segmentation Error - #Fixed
+    - First, i added multiple test print statements to the program to try to monitor the flow of the program
+        - It also helped me to see what was going on in the program
+        - And narrow down the problem
     - Relocated the contents of Open_File to the main function
     - Relocated the contents of Open_OutFile to the main function
     - After these changes, the program ran successfully
-BUG #2 - Program would not run
+BUG #2 - Program would not run - #Fixed
     - Fixed by changing the variable [data_fetched] to a pointer
     - The variable was being used in the function Get_Data
     - After this change, the program ran successfully
-BUG #3 - The data in the report file was not being printed correctly
+BUG #3 - The data in the report file was not being printed correctly - #Fixed
     - Fixed by adding a new line character to the end of the Print_Line function
     - Then added tab spaces using \t
+    - After this change, the program printed the file correctly
+BUG #4 - Program could only accept integers for the path_width_yards - #Fixed
+    - Fixed by changing the variable [path_width_yards] to a float
+    - Repeated this for all instances of the variable
+    - After this change, the program could accept floats for the path_width_yards
 */
 
 
@@ -159,17 +166,17 @@ int Open_OutFile (FILE *outfile_report);
     //Tells the terminal if file is successfully opened or not
     //Returns 404 if unsuccessful
 
-int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles, int *path_width_yards);   
+int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles, float *path_width_yards);   
     //It reads a line of data from the tornado.txt
     //Stores them into the pointers
     //Uses a local variable [data_fetched]
 
-void Calc_Area (float *affected_area, float *path_length_miles, int *path_width_yards);
+void Calc_Area (float *affected_area, float *path_length_miles, float *path_width_yards);
     //Calculates the area affected for each tornado and keeps a running total of the areas
     //Uses the formula [path_width_miles * path_length_yards /1760]
     //Divided by 1760 to convert the yards to miles
 
-int Print_Line (FILE *outfile_report, int *fujita_scale, float *path_length_miles, int *path_width_yards, float *affected_area);
+int Print_Line (FILE *outfile_report, int *fujita_scale, float *path_length_miles, float *path_width_yards, float *affected_area);
     //Prints one line into the report file
 
 //void Print_Report (FILE *outfile_report, float *running_total);
@@ -193,7 +200,7 @@ int main ()
 
     float path_length_miles;    //Path length of the tornado
 
-    int path_width_yards;   //path_width of the tornado in yards
+    float path_width_yards;   //path_width of the tornado in yards
 
     float affected_area;    //calculated area affected by each tornado
 
@@ -205,7 +212,7 @@ int main ()
     Welcome (); //Prints a welcome statement and tells the user the purpose of the program
 
     Open_File (infile_tornado); //Opens the tornado file and reads from it
-    printf("\nTest - Called Open_File\n"); //testing the open function
+    //printf("\nTest - Called Open_File\n"); //testing the open function
 
         //Open the file
     infile_tornado = fopen("tornado.txt", "r");
@@ -224,11 +231,11 @@ int main ()
 
 
     Open_OutFile (outfile_report);  //Creates or Opens the Report.txt file
-    printf("\nTest - Called Open_OutFile\n"); //testing to check if it ran successfully
+    //printf("\nTest - Called Open_OutFile\n"); //testing to check if it ran successfully
 
     //Creates/Opens the Report.txt file
     outfile_report = fopen("Report.txt", "w");
-    printf("Test - outfile report ran\n");
+    //printf("Test - outfile report ran\n");
 
     //Check if file is opened successfully and prints a message to the terminal
     if (!(outfile_report))
@@ -245,35 +252,37 @@ int main ()
 
     //prints the first column to the Report.txt file
     fprintf(outfile_report, "EF Rating\t\tPath Length\t\tPath Width\t\tAffected Area\n");
-    fprintf(outfile_report, "Fujita Scale\t(Miles)\t\t\tYards\t\t\tSquare Miles\n");
+    fprintf(outfile_report, "Fujita Scale\t(Miles)\t\tYards\t\t\tSquare Miles\n");
 
     //Prints the data to the Report.txt file
     while (Get_Data (infile_tornado, &fujita_scale, &path_length_miles, &path_width_yards))
     {
-        printf("\nTest - Entered the while loop\n"); //testing to check when the while loop starts
+        //printf("\nTest - Entered the while loop\n"); //testing to check when the while loop starts
 
         //Calculates the area affected for each tornado and keeps a running total of the areas
         Calc_Area (&affected_area, &path_length_miles, &path_width_yards);
-        printf("\nTest - Called Calc_Area\n");
+        //printf("\nTest - Called Calc_Area\n");
 
         //Prints one line into the report file
         Print_Line (outfile_report, &fujita_scale, &path_length_miles, &path_width_yards, &affected_area);
-        printf("\nTest - Called Print_Line\n");
+        //printf("\nTest - Called Print_Line\n");
 
         //Adds the affected area to the running total
         running_total += affected_area;
-        printf("\nTest - Added the affected area to the running total\n");
+        //printf("\nTest - Added the affected area to the running total\n");
     }
 
     //prints the total area affected to the report file
     float total_area = running_total;
-    printf("\nTest - Created a local variable to store the running total\n");
-    fprintf(outfile_report, "\nTotal Area Affected: %f square miles", total_area);
+    //printf("\nTest - Created a local variable to store the running total\n");
+    fprintf(outfile_report, "\nTotal Area Affected: %.4f square miles", total_area);
     printf("Report printed successfully.");
 
     //Calls the End_Program function to close the files and print a success message to the terminal
     End_Program (infile_tornado, outfile_report);
-    printf("\nTest - Called End_Program\n"); //testing to check if it ran successfully
+    //printf("\nTest - Called End_Program\n"); //testing to check if it ran successfully
+
+    printf("\nThe program ran successfully!\n");
 
     return 0;
 }
@@ -307,16 +316,16 @@ int Open_OutFile (FILE *outfile_report)
 //This function reads a line of data from the tornado.txt
 //Stores them into the pointers
 //Uses a local variable [data_fetching]
-int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles, int *path_width_yards)
+int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles, float *path_width_yards)
 {
-    printf("Test - Opened Get_Data\n");
+    //printf("Test - Opened Get_Data\n");
 
     int data_fetching;
-    printf("Test - Declared data_fetching\n");
+    //printf("Test - Declared data_fetching\n");
 
     //BUGGGG - This code is leading to a segmentation fault
-    data_fetching = fscanf(infile_tornado, "%d %f %d", fujita_scale, path_length_miles, path_width_yards);
-    printf("Test - Data_fetching has been done\n");
+    data_fetching = fscanf(infile_tornado, "%d %f %f", fujita_scale, path_length_miles, path_width_yards);
+    //printf("Test - Data_fetching has been done\n");
 
     if (data_fetching == EOF)
     {
@@ -338,38 +347,41 @@ int Get_Data (FILE *infile_tornado, int *fujita_scale, float *path_length_miles,
         return 1;
     }
 
-    printf("Test - Get_Data ran successfully.\n");
+    //printf("Test - Get_Data ran successfully.\n");
 }
 
 //This function calculates the area affected for each tornado and keeps a running total of the areas
-void Calc_Area (float *affected_area, float *path_length_miles, int *path_width_yards)
+void Calc_Area (float *affected_area, float *path_length_miles, float *path_width_yards)
 {
-    printf("Test - Opened Calc_Area\n");
+    //printf("Test - Opened Calc_Area\n");
+    
+    //converts the path_width from yards to miles
     float path_width_miles = *path_width_yards / 1760.0;
-        //converts the path_width from yards to miles
+    //printf("Test - Converted path_width from yards to miles\n");
+
+    //calculates the affected area for each tornado
     float affectedArea = *path_length_miles * path_width_miles;
-        //calculates the affected area for each tornado
     *affected_area = affectedArea;
 
-    printf("Test - Calculated the affected area\n");
+    //printf("Test - Calculated the affected area\n");
 }
 
 //This function prints one line into the report file
-int Print_Line (FILE *outfile_report, int *fujita_scale, float *path_length_miles, int *path_width_yards, float *affected_area)
+int Print_Line (FILE *outfile_report, int *fujita_scale, float *path_length_miles, float *path_width_yards, float *affected_area)
 {
-    printf("Test - Opened Print_Line\n");
+    //printf("Test - Opened Print_Line\n");
 
-    fprintf(outfile_report, "%d \t\t\t\t%8.4f\t\t%7d\t\t\t\t%8.4f", *fujita_scale, *path_length_miles, *path_width_yards, *affected_area);
+    fprintf(outfile_report, "%d \t\t\t%8.4f\t\t%7.2f\t\t%8.4f", *fujita_scale, *path_length_miles, *path_width_yards, *affected_area);
     fprintf(outfile_report, "\n");
 
-    printf("Test - Printed the line\n");
+    //printf("Test - Printed the line\n");
     return 0;
 }
 
 //This function closes the files and prints a message to the terminal
 void End_Program (FILE *infile_tornado, FILE *outfile_report)
 {
-    printf("\nTest - Opened End_Program\n");
+    //printf("\nTest - Opened End_Program\n");
     
     fclose(infile_tornado);
     fclose(outfile_report);
