@@ -1,0 +1,82 @@
+/*
+A hospital supply company wants to market a program to assist with the calculation of intravenous rates.
+Design and implement a program that interacts with the user as follows:
+
+INTRAVENOUS RATE ASSISTANT //This is the title of the program
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+Problem> 1 
+Enter rate in ml/hr=> 150 
+Enter tubing's drop factor(drops/ml)=> 15 
+The drop rate per minute is 38.
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+Problem=> 2 
+Enter number of hours=> 8 
+The rate in milliliters per hour is 125.
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+Problem=> 3 
+Enter rate in mg/kg/hr=> 0.6 
+Enter patient weight in kg=> 70 
+Enter concentration in mg/ml=> 1 
+The rate in milliliters per hour is 42. 
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT 
+Problem=> 4 
+Enter rate in units/hr=> 1000 
+Enter concentration in units/ml=> 25 
+The rate in milliliters per hour is 40.
+
+Enter the number of the problem you wish to solve. 
+ GIVEN A MEDICAL ORDER IN CALCULATE RATE IN 
+(1) ml/hr & tubing drop factor drops / min 
+(2) 1 L for n hr ml / hr 
+(3) mg/kg/hr & concentration in mg/ml ml / hr 
+(4) units/hr & concentration in units/ml ml / hr 
+(5) QUIT
+Problem=> 5
+ 
+ Implement the following functions: 
+get_problem —Displays the user menu, then inputs and returns as the function value the problem number selected. 
+get_rate_drop_factor —Prompts the user to enter the data required for 
+problem 1, and sends this data back to the calling module via output 
+parameters. 
+get_kg_rate_conc — Prompts the user to enter the data required for problem 3, and sends this data back to the calling module via output parameters. 
+get_units_conc — Prompts the user to enter the data required for problem 4, 
+and sends this data back to the calling module via output parameters. 
+fig_drops_min — Takes rate and drop factor as input parameters and returns 
+drops/min (rounded to nearest whole drop) as function value. 
+fig_ml_hr —Takes as an input parameter the number of hours over which 
+one liter is to be delivered and returns ml/hr (rounded) as function value. 
+by_weight —Takes as input parameters rate in mg/kg/hr, patient weight in kg, 
+and concentration of drug in mg/ml and returns ml/hr (rounded) as function value. 
+by_units —Takes as input parameters rate in units/hr and concentration in 
+units/ml, and returns ml/hr (rounded) as function value. 
+ ( Hint: Use a sentinel-controlled loop. Call get_problem once before the loop 
+to initialize the problem number and once again at the end of the loop body to 
+update it.) 
