@@ -191,12 +191,12 @@ void Sort(int arr[], int n)
 
 
 //This function finds the median
-double Find_Median(int arr[], int n)
+double Find_Median(int arr[])
 {
     //Declaring the variables
     double median;
 
-    /* //Finding the median
+    //Finding the median
     if (arr[2] == arr[3])
     {
         median = (double)(arr[2] + arr[3]) / 2.0;
@@ -204,9 +204,9 @@ double Find_Median(int arr[], int n)
     else
     {
         median = arr[3];
-    } */
+    }
 
-    median= (arr[n/2] +arr[(n+1)/2])* 0.5;
+    //median= (arr[n/2] +arr[(n+1)/2])* 0.5;
 
     return median;
 }
