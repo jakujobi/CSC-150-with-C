@@ -53,6 +53,9 @@ void Display(int arr[], int most, int least, int total, double average, double m
 
 int main()
 {
+    //! Test #
+    printf("Test#1\n");
+
     //Declaring the array
     int arr[6];
 
@@ -64,28 +67,51 @@ int main()
     const int n = 6;
 
     //Calling the functions
+    //! Test #
+    printf("Test#2\n");
 
     //Reading the data from the file and storing it in the array using the function Read_Data
     Read_Data(arr);
 
+    //! Test #
+    printf("Test#3\n");
+
     //Finding the month with the most sales using the function Find_Most
     most = Find_Most(arr);
+
+    //! Test #
+    printf("Test#4\n");
 
     //Finding the month with the least sales using the function Find_Least
     least = Find_Least(arr);
 
+    //! Test #
+    printf("Test#5\n");
+    
     //Calculating the total and average using the function Calc_Total_Average
     Calc_Total_Average(arr, &total, &average);
 
+    //! Test #
+    printf("Test#6\n");
+    
     //Sorting the array using the function Sort
     Sort(arr, n);
 
+    //! Test #
+    printf("Test#7\n");
+    
     //Finding the median using the function Find_Median
     median = Find_Median(arr, n);
 
+    //! Test #
+    printf("Test#9\n");
+    
     //Displaying the results using the function Display
     Display(arr, most, least, total, average, median);
 
+    //! Test #
+    printf("Test#10\n");
+    
     return 0;
 }
 
@@ -191,12 +217,12 @@ void Sort(int arr[], int n)
 
 
 //This function finds the median
-double Find_Median(int arr[])
+double Find_Median(int arr[], int n)
 {
     //Declaring the variables
     double median;
 
-    //Finding the median
+     //Finding the median
     if (arr[2] == arr[3])
     {
         median = (double)(arr[2] + arr[3]) / 2.0;
