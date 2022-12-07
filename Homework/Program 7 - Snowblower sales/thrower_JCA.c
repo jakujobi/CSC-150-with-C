@@ -19,20 +19,33 @@ Your program should have separate functions to:
 •	Find the median
 •	Print the month name, given the month number (October = 1 …. March = 6).
 •	Display the highest month name, lowest month name, total, average, sorted data, and median
-
-Also create a frequency array, use it to find the mode and print a histogram of the data for the season.     
+    create a frequency array,
+    use it to find the mode
+    print a histogram of the data for the season.     
 
 Created by John Akujobi
 On the 4th of November, 2022
 */
 
+/*
+BUGS:
+
+BUG#1: //! The program is running into a segmentation fault when it is trying to read the data from the file.
+    The compiler is not giving any errors, and not executing the program at all.
+    Tested on CodeBlocks, Visual Studio Code, Programiz, but they gave no errors.
+    However, on the online Programiz compiler, it gave an error "Segmentation Fault"
+    I search for meaning of this error and read that the program is trying to access an invalid memory location.
+
+*/
+
+//Preprocessor directives
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 //Function prototypes
 
 //This function reads the data from the file and stores it in the array
-void Read_Data(int arr[]);
+void Read_Data(int arr[], int n);
 
 //Finds the month with the most sales
 int Find_Most(int arr[]);
@@ -43,13 +56,27 @@ int Find_Least(int arr[]);
 //Finds the total and average
 void Calc_Total_Average(int arr[], int *total, double *average);
 
+//Sorts the array
 void Sort(int arr[], int n);
 
+//Finds the median
 double Find_Median(int arr[], int n);
 
+//Prints the month name
 void Print_Month_Name(int month);
 
-void Display(int arr[], int most, int least, int total, double average, double median);
+//Displays the results
+void Display(int arr[], int most, int least, int total, double average, double median, int mode);
+
+//Builds the frequency array
+void Frequency_Array(int arr[], int n, int freq_arr[], int range);
+
+//Prints the histogram
+void printHistogram(int freq_arr[], int range);
+
+//Finding the mode
+int Find_Mode(int freq_arr[], int range);
+
 
 int main()
 {
@@ -60,8 +87,12 @@ int main()
     int arr[6];
 
     //Declaring the variables
-    int most, least, total;
+    int most, least, total, mode;
     double average, median;
+
+    //Declaring the frequency array variables
+    int freq_arr[6];
+    int range = 6;
 
     //Declaring the constant
     const int n = 6;
@@ -71,7 +102,7 @@ int main()
     printf("Test#2\n");
 
     //Reading the data from the file and storing it in the array using the function Read_Data
-    Read_Data(arr);
+    Read_Data(arr, n);
 
     //! Test #
     printf("Test#3\n");
@@ -107,32 +138,51 @@ int main()
     printf("Test#9\n");
     
     //Displaying the results using the function Display
-    Display(arr, most, least, total, average, median);
+    Display(arr, most, least, total, average, median, mode);
 
     //! Test #
     printf("Test#10\n");
+
+    //Building the frequency array using the function Frequency_Array
+    Frequency_Array(arr, n, freq_arr, range);
+
+    //! Test #
+    printf("Test#11\n");
+
+    //Printing the histogram using the function printHistogram
+    printHistogram(freq_arr, range);
+
+    //! Test #
+    printf("Test#12\n");
     
     return 0;
 }
 
 //This function reads the data from the file and stores it in the array
-void Read_Data(int arr[])
+void Read_Data( int arr[], int n)
 {
-    //Declaring the file pointer
-    FILE *fp;
+    FILE *in_thrower_file;
 
-    //Opening the file
-    fp = fopen("throwers.txt", "r");
-
-    //Reading the data from the file and storing it in the array
-    for (int i = 0; i < 6; i++)
+    if (!(in_thrower_file = fopen ("throwers.txt", "r")))
     {
-        fscanf (fp, "%d", &arr[i]);
+    printf("throwers.txt could not be opened\n");
+    return;
     }
 
-    //Closing the file
-    fclose(fp);
+    else
+    {
+        printf("throwers.txt was opened\n");
+        for(int i=0; i < n; i++)
+        {
+            fscanf(in_thrower_file, "%d", &arr[i]);
+        }
+
+        fclose(in_thrower_file);
+        return;
+    }
 }
+
+
 
 //This function finds the month with the most sales
 int Find_Most(int arr[])
@@ -273,7 +323,7 @@ void Print_Month_Name(int month)
 }
 
 //This function displays the highest month name, lowest month name, total, average, sorted data, and median
-void Display(int arr[], int most, int least, int total, double average, double median)
+void Display(int arr[], int most, int least, int total, double average, double median, int mode)
 {
     //Printing the highest month name
     printf("The month with the most sales is ");
@@ -301,6 +351,66 @@ void Display(int arr[], int most, int least, int total, double average, double m
 
     //Printing the median
     printf("The median is %.2f.\n", median);
+
+    //Printing the mode
+    printf("The mode is %d.\n", mode);
+
+    return;
 }
 
 
+//Builds the frequency array
+void Frequency_Array(int arr[], int n, int freq_arr[], int range)
+{
+    //Declaring local variable f
+    int f;
+
+    //Zero out freq ary
+    for(f = 0; f < n; f++);
+    {
+        freq_arr[f] = 0;
+    }
+
+    //Source: Today's class 12/6/2022
+    for(int i=0; i < n; i++)
+    {
+        freq_arr[arr[i] ]++;
+    }
+
+    return;
+}
+
+//Prints the histogram
+void printHistogram(int freq_arr[], int range)
+{
+    for(int f=0; f < range; f++)
+    {
+        printf("%2d: %2d ", f, freq_arr[f]);
+
+        for(int i=0; i < freq_arr[f]; i++)
+        {
+            printf(" *");
+        }
+        printf("\n");
+    }
+    printf("\n\n");
+}
+
+
+//Finding the mode
+int Find_Mode(int freq_arr[], int range)
+{
+    //Declaring the variables
+    int mode = 0;
+
+    //Finding the mode
+    for (int i = 0; i < range; i++)
+    {
+        if (freq_arr[i] > freq_arr[mode])
+        {
+            mode = i;
+        }
+    }
+
+    return mode;
+}
