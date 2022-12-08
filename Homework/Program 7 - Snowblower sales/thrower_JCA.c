@@ -1,7 +1,7 @@
 /*
 Snowblower Sales
-A gaming store records the sales of snowblower (snowthrowers) during the colder months (October – March). 
-The number of throwers sold is stored in a file named throwers.txt which contains 6 integer values, one per line. 
+A gaming store records the sales of snowblower (snow throwers) during the colder months (October – March).
+The number of throwers sold is stored in a file named throwers.txt which contains 6 integer values, one per line.
 The first number is for October, the second for November, third for December, fourth for January, fifth for February, and sixth for March.
 
 Write a program to calculate the total number of systems sold during the year,
@@ -10,7 +10,7 @@ the month with the most sales,
 the month with the least sales,
 and the median number of sales.
 
-Your program should have separate functions to:  
+Your program should have separate functions to:
 •	Read the data
 •	Find the number of the month with the most systems sold
 •	Find the number of the month with the least systems sold
@@ -21,7 +21,7 @@ Your program should have separate functions to:
 •	Display the highest month name, lowest month name, total, average, sorted data, and median
     create a frequency array,
     use it to find the mode
-    print a histogram of the data for the season.     
+    print a histogram of the data for the season.
 
 Created by John Akujobi
 On the 4th of November, 2022
@@ -36,6 +36,24 @@ BUG#1: //! The program is running into a segmentation fault when it is trying to
     However, on the online Programiz compiler, it gave an error "Segmentation Fault"
     I search for meaning of this error and read that the program is trying to access an invalid memory location.
 
+    Tried this solution: https://stackoverflow.com/questions/10000000/segmentation-fault-when-reading-from-file
+    Did not work.
+
+    Added test statements after various function calls to see where the program is breaking.
+    //! Test#
+    printf("Test#%d", n);
+    FOllowed the program flow and found that the program was breaking at the Read_Data function.
+
+    Tested the program on a different machine, and it worked.
+    Turns out that the problem was the g++ compiler on my machine.
+    The other machine had a gcc compiler.
+
+BUG#2: //! The program is not printing the histogram.
+    The program prints and unending number of asterisks.
+    Seems like the program is not stopping the loop when it is supposed to and going into infinity loop.
+    Tried to fix it by adding a break statement, but it did not work.
+
+    Resorted to commenting out the function statements in the printHistogram function.
 */
 
 //Preprocessor directives
@@ -75,13 +93,13 @@ void Frequency_Array(int arr[], int n, int freq_arr[], int range);
 void printHistogram(int freq_arr[], int range);
 
 //Finding the mode
-int Find_Mode(int freq_arr[], int range);
+int Find_Mode(int arr[], int n);
 
 
 int main()
 {
     //! Test #
-    printf("Test#1\n");
+    //printf("Test#1\n");
 
     //Declaring the array
     int arr[6];
@@ -95,66 +113,70 @@ int main()
     int range = 6;
 
     //Declaring the constant
-    const int n = 6;
+    int n = 6;
 
     //Calling the functions
     //! Test #
-    printf("Test#2\n");
+    //printf("Test#2\n");
 
     //Reading the data from the file and storing it in the array using the function Read_Data
     Read_Data(arr, n);
 
     //! Test #
-    printf("Test#3\n");
+    //printf("Test#3\n");
 
     //Finding the month with the most sales using the function Find_Most
     most = Find_Most(arr);
 
     //! Test #
-    printf("Test#4\n");
+    //printf("Test#4\n");
 
     //Finding the month with the least sales using the function Find_Least
     least = Find_Least(arr);
 
     //! Test #
-    printf("Test#5\n");
-    
+    //printf("Test#5\n");
+
     //Calculating the total and average using the function Calc_Total_Average
     Calc_Total_Average(arr, &total, &average);
 
     //! Test #
-    printf("Test#6\n");
-    
+    //printf("Test#6\n");
+
     //Sorting the array using the function Sort
     Sort(arr, n);
 
     //! Test #
-    printf("Test#7\n");
-    
+    //printf("Test#7\n");
+
     //Finding the median using the function Find_Median
     median = Find_Median(arr, n);
 
     //! Test #
-    printf("Test#9\n");
-    
+    //printf("Test#9\n");
+
+        mode = Find_Mode(arr, n);
+
     //Displaying the results using the function Display
     Display(arr, most, least, total, average, median, mode);
 
     //! Test #
-    printf("Test#10\n");
+    //printf("Test#10\n");
 
     //Building the frequency array using the function Frequency_Array
     Frequency_Array(arr, n, freq_arr, range);
 
     //! Test #
-    printf("Test#11\n");
+    //printf("Test#11\n");
 
     //Printing the histogram using the function printHistogram
     printHistogram(freq_arr, range);
 
+
+
     //! Test #
-    printf("Test#12\n");
-    
+    //printf("Test#12\n");
+
     return 0;
 }
 
@@ -272,20 +294,24 @@ double Find_Median(int arr[], int n)
     //Declaring the variables
     double median;
 
+    //median= (arr[n/2] +arr[(n+1)/2])* 0.5;
+
      //Finding the median
-    if (arr[2] == arr[3])
+
+     if (n % 2 == 0)
     {
-        median = (double)(arr[2] + arr[3]) / 2.0;
+        median = (arr[(n) / 2] + arr[n / 2-1]) / 2.0;
     }
     else
     {
-        median = arr[3];
+        median= arr[n / 2];
     }
 
-    //median= (arr[n/2] +arr[(n+1)/2])* 0.5;
 
     return median;
 }
+
+
 
 //This function prints the month name to the terminal, given the month number
 void Print_Month_Name(int month)
@@ -316,11 +342,14 @@ void Print_Month_Name(int month)
         case 5:
             printf("March");
             break;
-    } 
+    }
+
+    return;
 
     //Printing the month name
     //printf("%s", months[month]); //Not needed
 }
+
 
 //This function displays the highest month name, lowest month name, total, average, sorted data, and median
 void Display(int arr[], int most, int least, int total, double average, double median, int mode)
@@ -329,7 +358,7 @@ void Display(int arr[], int most, int least, int total, double average, double m
     printf("The month with the most sales is ");
     Print_Month_Name(most);
     printf(".\n");
-    
+
     //Printing the lowest month name
     printf("The month with the least sales is ");
     Print_Month_Name(least);
@@ -359,6 +388,7 @@ void Display(int arr[], int most, int least, int total, double average, double m
 }
 
 
+
 //Builds the frequency array
 void Frequency_Array(int arr[], int n, int freq_arr[], int range)
 {
@@ -380,9 +410,12 @@ void Frequency_Array(int arr[], int n, int freq_arr[], int range)
     return;
 }
 
+
+
 //Prints the histogram
 void printHistogram(int freq_arr[], int range)
 {
+    /*
     for(int f=0; f < range; f++)
     {
         printf("%2d: %2d ", f, freq_arr[f]);
@@ -394,23 +427,30 @@ void printHistogram(int freq_arr[], int range)
         printf("\n");
     }
     printf("\n\n");
+    */
+    return;
 }
 
 
 //Finding the mode
-int Find_Mode(int freq_arr[], int range)
+//source of concept: https://www.tutorialspoint.com/learn_c_by_examples/mode_program_in_c.htm
+int Find_Mode(int arr[],int n)  
 {
-    //Declaring the variables
-    int mode = 0;
+   int modeValue = 0, modeCount = 0, i, j;
 
-    //Finding the mode
-    for (int i = 0; i < range; i++)
-    {
-        if (freq_arr[i] > freq_arr[mode])
-        {
-            mode = i;
-        }
-    }
+   for (i = 0; i < n; ++i) {
+      int count = 0;
 
-    return mode;
+      for (j = 0; j < n; ++j) {
+         if (arr[j] == arr[i])
+         ++count;
+      }
+
+      if (count > modeCount) {
+         modeCount = count;
+         modeValue = arr[i];
+      }
+   }
+
+   return modeValue;
 }
