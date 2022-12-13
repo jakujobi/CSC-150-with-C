@@ -255,6 +255,17 @@ void printresultsT (float arr1[], float arr2[], float arr3[], float MonthlyMean[
         printf( "\t%1.2f\t%1.2f\t%1.2f\t%1.2f", arr1[i], arr2[i], arr3[i], MonthlyMean[i]);
     }
 
+    float sum1 = (calcSumArr (arr1, SIZE));
+    float sum2 = (calcSumArr (arr2, SIZE));
+    float sum3 = (calcSumArr (arr3, SIZE));
+    float Msum = (calcSumArr (MonthlyMean, SIZE));
+
+    //Prints a line showing the sum per year
+    printf("\n\nTotal\t%1.2f\t%1.2f\t%1.2f\t%1.2f", sum1, sum2, sum3, Msum);
+
+    //Prints a line showing the Average per year
+    printf("\nAverage\t%1.2f\t%1.2f\t%1.2f\t%1.2f", sum1/SIZE, sum2/SIZE, sum3/SIZE, Msum/SIZE);
+
     printf("\n");
 
     return;
@@ -283,7 +294,7 @@ void printresultsFile(float arr1[], float arr2[], float arr3[], float MonthlyMea
     }
 
     //Print the header
-    fprintf(outFile,"\nMON\tY22\tY21\tY20\tMean");
+    fprintf(outFile,"MON\tY22\tY21\tY20\tMean");
 
     //Print the Months, and values
     for (int i = 0; i<SIZE ; i++)
@@ -335,6 +346,19 @@ void printresultsFile(float arr1[], float arr2[], float arr3[], float MonthlyMea
         fprintf(outFile,"\t%1.2f\t%1.2f\t%1.2f\t%1.2f", arr1[i], arr2[i], arr3[i], MonthlyMean[i]);
     }
 
+
+    float sum1 = (calcSumArr (arr1, SIZE));
+    float sum2 = (calcSumArr (arr2, SIZE));
+    float sum3 = (calcSumArr (arr3, SIZE));
+    float Msum = (calcSumArr (MonthlyMean, SIZE));
+
+    //Prints a line showing the sum per year
+    fprintf(outFile,"\n\nTotal\t%1.2f\t%1.2f\t%1.2f\t%1.2f", sum1, sum2, sum3, Msum);
+
+    //Prints a line showing the Average per year
+    fprintf(outFile,"\nAverage\t%1.2f\t%1.2f\t%1.2f\t%1.2f", sum1/SIZE, sum2/SIZE, sum3/SIZE, Msum/SIZE);
+
+
     fprintf(outFile,"\n");  //Print an empty line under in the file
 
     fclose(outFile); //Close the file
@@ -384,6 +408,7 @@ int main ()
 
     //Prints the results to the file
     printresultsFile (Y22, Y21, Y20, MonthlyMean, SIZE);
+
 
 	return 0;
 }
