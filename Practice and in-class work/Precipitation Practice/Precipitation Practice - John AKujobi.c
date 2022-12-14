@@ -1,4 +1,9 @@
 /*
+Program and Question by John Akujobi
+Created on the 9th of Decemeber 2022
+Part 0 and Part 1 completed on the 12th of December 2022
+
+
 A text file “Brookings Rainfall 2020-2022.txt” contains the average precipitation per month for each month of the past 4 years.
 
 The first column is for the months of 2022, 2nd column for that of 2021, 3rd for 2020.
@@ -240,6 +245,48 @@ void printmonth (int month)
 }
 
 
+//This finds the largest number
+int highest(float arr[], int SIZE);
+int highest(float arr[], int SIZE)
+{
+    int LPos=0; //Position of the largest value, equal to the i at that time
+    for (int i = 0; i<SIZE; i++)
+    {
+        if (arr[i]>arr[LPos])
+        {
+            LPos = i;
+        }
+    }
+
+    return LPos;
+}
+
+
+//This finds the smallest number
+int smallest(float arr[], int SIZE);
+int smallest(float arr[], int SIZE)
+{
+    int SPos=0; //Position of the largest value, equal to the i at that time
+    for (int i = 0; i<SIZE; i++)
+    {
+        if (arr[i]<arr[SPos])
+        {
+            SPos = i;
+        }
+    }
+
+    return SPos;
+}
+
+
+//Sorts the array
+void sortArray(float arr[], int SIZE);
+void sortArray(float arr[], int SIZE)
+{
+    //! Sheesh, i need to learn this one
+}
+
+
 //Prints the result to the terminal
 void printresultsT (float arr1[], float arr2[], float arr3[], float MonthlyMean[], int SIZE);
 void printresultsT (float arr1[], float arr2[], float arr3[], float MonthlyMean[], int SIZE)
@@ -266,7 +313,41 @@ void printresultsT (float arr1[], float arr2[], float arr3[], float MonthlyMean[
     //Prints a line showing the Average per year
     printf("\nAverage\t%1.2f\t%1.2f\t%1.2f\t%1.2f", sum1/SIZE, sum2/SIZE, sum3/SIZE, Msum/SIZE);
 
+    //__________________________Part 2
+
+    int LPos; //Declaring the variable LPos
+    
+    LPos = highest (arr1, SIZE);
+    printf("\n\nLargest in 2022 is %1.2f in the month of ", arr1[LPos]);
+    printmonth(LPos);
+
+    LPos = highest (arr2, SIZE);
+    printf("\nLargest in 2021 is %1.2f in the month of ", arr2[LPos]);
+    printmonth(LPos);
+
+    LPos = highest (arr3, SIZE);
+    printf("\nLargest in 2022 is %1.2f in the month of ", arr3[LPos]);
+    printmonth(LPos);
+
     printf("\n");
+
+
+    int SPos; //Declaring the variable SPos
+    
+    SPos = smallest (arr1, SIZE);
+    printf("\n\nLeast in 2022 is %1.2f in the month of ", arr1[SPos]);
+    printmonth(SPos);
+
+    SPos = smallest (arr2, SIZE);
+    printf("\nLeast in 2021 is %1.2f in the month of ", arr2[SPos]);
+    printmonth(SPos);
+
+    SPos = smallest (arr3, SIZE);
+    printf("\nLeast in 2022 is %1.2f in the month of ", arr3[SPos]);
+    printmonth(SPos);
+
+    printf("\n");
+
 
     return;
 }
