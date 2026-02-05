@@ -1,2 +1,35 @@
+# Compiled executables
+*.exe
+*.out
+*.o
+*.obj
 
-Practice and in-class work/Print 1 to 10 except multiples of 3 and using continue statement/Print 1 to 10 except multiples of 3 and using continue statement.c
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+*.a
+*.so
+*.dll
+*.dylib
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Output and temporary files
+*.log
+*.tmp
+report.txt
+output.txt
