@@ -15,8 +15,8 @@ This repository contains coursework from CSC-150, showcasing progressive learnin
 ## ✨ Key Features
 
 - **7 Major Programs** covering core CS concepts (P1-P7)
-- **65+ Chapter Exercises** organized by topic (Chapters 1-7)
-- **Multiple Practice Scripts** for skill reinforcement
+- **15+ Chapter Exercises** organized by topic (Chapters 1-7)
+- **17+ Practice Scripts** for skill reinforcement
 - **Complete Design Documentation** including flowcharts and structure charts
 - **Real-world Applications** (hospital IV calculator, tornado data analysis, sales analytics)
 - **Input/Output File Handling** with data processing
